@@ -8,10 +8,10 @@ export default function Home() {
   const {loginState} = useStore(Store);
 
   useEffect(() => {
-    console.log('aaa');
     if (!loginState) {
-      console.log('bbb')
       router.push('/login');
+    } else {
+      router.push('/home');
     }
   });
 

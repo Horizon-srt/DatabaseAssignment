@@ -1,18 +1,13 @@
 import { useState } from 'react';
 import styles from '../register/styles/style.module.css'
 import router from 'next/router';
-
-type UserInfoProp = {
-    userId: string;
-    userName: string;
-    userPassword: string;
-}
+import { UserRegisterProps } from '@/utils/appType';
+import { postUserRegister } from '@/api/api';
 
 const Register = () => {
-    const [type, setType] = useState('student');
+    const [root, setRoot] = useState(false);
     const [id, setId] = useState('');  
     const [password, setPassword] = useState('');
-    const [userInfo, setUserInfo] = useState<UserInfoProp>();
     const [name, setName] = useState('');
     const [showPopup, setShowPopup] = useState(false);
 
@@ -21,15 +16,19 @@ const Register = () => {
     };
 
     const handleRegister = async () => {
-        const tempInfo: UserInfoProp = {
+        const tempInfo: UserRegisterProps = {
             userId: id,
-            userName: name,
-            userPassword: password
+            name: name,
+            password: password,
+            root: root
         };
         if (id != '' && name != '' && password != '') {
-            setUserInfo(tempInfo);
-            console.log(userInfo);
-            // TODO: 将注册信息存到数据库
+            await postUserRegister(tempInfo).then(res => {
+                console.log(res);
+                alert('注册成功');
+            }).catch(err => {
+                console.log(err);
+            })
             router.back();
         } else {
             setShowPopup(true);
@@ -41,7 +40,7 @@ const Register = () => {
     };
 
     const SwitchRoles = () => {
-        setType(type === 'student' ? 'teacher' : 'student')
+        setRoot(!root)
     }
     
     const changeName = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -60,7 +59,7 @@ const Register = () => {
         <main className={styles.main}>
             <button className={styles.button} onClick={SwitchRoles}>切换身份</button>
             <div className={styles.contain}>
-            <p className={styles.header}>{type === 'student' ? '学生' : '教师'}注册</p>
+            <p className={styles.header}>{root ? '教师' : '学生'}注册</p>
             <div>
             <div className={styles.input}>
                     <label htmlFor="name">昵称：</label>

@@ -3,17 +3,23 @@ import { GetRecordProps, GetUsageProps, RecordProps, SearchRoomsProps, UsageProp
 // 获取用户数据
 export const postUserLogin = async (args: UserLoginProps) => {
     const temp: UserInfoProps = {
-        userId: '',
-        password: '',
-        name: '',
+        userId: '1',
+        password: '1',
+        name: '1',
         root: false
     };
     return temp;
 };
 
 // 注册
-export const postUserRegister = (args: UserRegisterProps) => {
-
+export const postUserRegister = async (args: UserRegisterProps) => {
+    const temp: UserRegisterProps = {
+        userId: '',
+        password: '',
+        name: '',
+        root: false
+    };
+    return temp;
 };
 
 // 查询当天空教室
