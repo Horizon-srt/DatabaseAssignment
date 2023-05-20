@@ -1,0 +1,16 @@
+.searchButton {
+    width: 60px;
+    height: 30px;
+    border-radius: 5px;
+    background-color: green;
+}
+
+.input {
+    border: 5px solid #ccc;
+    border-radius: 5px;
+}
+
+.divide {
+    height: 2px;
+    background-color: rgb(198, 197, 197);
+}

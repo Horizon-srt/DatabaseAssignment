@@ -37,7 +37,8 @@ export interface RoomProps {
   room: string;
   building: string;
   time: string;
-  userId: string;
+  name: string;
+  avaliable: boolean;
 };
 
 // 自习记录信息
@@ -46,7 +47,7 @@ export interface RecordProps {
   building: string;
   userId: string;
   startAt: string;
-  period: string;
+  period: number;
 };
 
 // 获取自习记录参数

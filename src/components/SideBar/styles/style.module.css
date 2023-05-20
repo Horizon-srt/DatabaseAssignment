@@ -6,4 +6,13 @@
     height: 600px;
     float: left;
     display: block;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.divide {
+    height: 2px;
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color: rgb(198, 197, 197);
 }

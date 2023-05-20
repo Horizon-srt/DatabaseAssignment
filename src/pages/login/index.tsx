@@ -7,6 +7,8 @@ import { UserLoginProps } from '@/utils/appType';
 import { postUserLogin } from '@/api/api';
 
 const Login = () => {
+    // TODO: 切换按钮
+
     const {setUserInfo, setLoginState, loginState} = useStore(Store);
 
     const [root, setRoot] = useState(false);

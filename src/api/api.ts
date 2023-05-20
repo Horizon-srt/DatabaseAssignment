@@ -1,4 +1,4 @@
-import { GetRecordProps, GetUsageProps, RecordProps, SearchRoomsProps, UsageProps, UserInfoProps, UserLoginProps, UserRegisterProps } from "@/utils/appType";
+import { GetRecordProps, GetUsageProps, RecordProps, RoomListProps, RoomProps, SearchRoomsProps, UsageProps, UserInfoProps, UserLoginProps, UserRegisterProps } from "@/utils/appType";
 
 // 获取用户数据
 export const postUserLogin = async (args: UserLoginProps) => {
@@ -23,13 +23,30 @@ export const postUserRegister = async (args: UserRegisterProps) => {
 };
 
 // 查询当天空教室
-export const getRooms = (args: SearchRoomsProps) => {
-
+export const getRooms =  async (args: SearchRoomsProps) => {
+    const room1: RoomProps = {
+        room: '101',
+        building: '1',
+        time: '1',
+        name: 'aaa',
+        avaliable: false
+    }
+    const room2: RoomProps = {
+        room: '102',
+        building: '1',
+        time: '1',
+        name: '',
+        avaliable: true
+    }
+    const res: RoomListProps = {
+        roomList: [room1, room2],
+    };
+    return res.roomList;
 };
 
 // 创建一条自习记录
-export const postCreateRecord = (args: RecordProps) => {
-
+export const postCreateRecord = async (args: RecordProps) => {
+    return {};
 };
 
 // 查看自习记录

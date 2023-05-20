@@ -1,0 +1,23 @@
+.listbox {
+    width: 100%;
+    height: 60px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.info {
+    background-color: black;
+}
+
+.button {
+    border-radius: 5px;
+}
+
+.divide {
+    height: 2px;
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color: rgb(198, 197, 197);
+}
