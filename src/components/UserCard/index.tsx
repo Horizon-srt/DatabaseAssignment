@@ -1,6 +1,6 @@
 import styles from './styles/style.module.css'
 import Image from 'next/image';
-import Avator from '@/componments/images/Avator.jpg'
+import Avator from '@/components/images/Avator.jpg'
 import { UserInfoProps } from '@/utils/appType';
 
 interface UserCardProps {

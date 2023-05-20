@@ -1,0 +1,9 @@
+.barCard {
+    margin: 10px;
+    background-color: white;
+    border-radius: 10px;
+    width: 100%;
+    height: 600px;
+    float: left;
+    display: block;
+}
