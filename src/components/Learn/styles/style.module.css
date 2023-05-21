@@ -1,0 +1,9 @@
+.title {
+    font-size: large;
+    font-weight: bolder;
+}
+
+.divide {
+    height: 2px;
+    background-color: rgb(198, 197, 197);
+}

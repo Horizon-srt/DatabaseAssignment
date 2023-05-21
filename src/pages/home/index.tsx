@@ -13,9 +13,9 @@ const Home = () => {
     const {userInfo} = useStore(Store);
     const [menuState, setMenuState] = useState('search' as MenuType);
 
-    // useEffect(() => {
-    //     console.log(menuState);
-    // },[menuState]);
+    useEffect(() => {
+        console.log(menuState);
+    }, [menuState]);
 
     return (
         <main className={styles.main}>

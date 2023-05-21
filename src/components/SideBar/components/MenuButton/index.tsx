@@ -7,8 +7,13 @@ interface MenuButtonProps {
 }
 
 const MenuButton: React.FC<MenuButtonProps> = ({ label, onClick }) => {
+    const handleClick = () => {
+        console.log(label);
+        onClick(label);
+    }
+
     return (
-        <div className={styles.menuButton} onClick={() => onClick(label)}>
+        <div className={styles.menuButton} onClick={handleClick}>
             <div className={styles.label}>{ MenuMap[label] }</div>
         </div>
     );

@@ -13,22 +13,6 @@ const Search: React.FC = () => {
     const [time, setTime] = useState('1');
     const [result, setResult] = useState([] as RoomProps[]);
     const {userInfo} = useStore(Store);
-    
-    useEffect(() => {
-        const initial = async () => {
-            const temp:SearchRoomsProps = {
-                building: building,
-                time: time
-            };
-            await getRooms(temp).then(res => {
-                setResult(res);
-            }).catch(err => {
-                console.log(err);
-            })
-        }
-
-        initial();
-    })
 
     const handleClick = async () => {
         const temp:SearchRoomsProps = {
@@ -69,7 +53,7 @@ const Search: React.FC = () => {
             </div>
             <div className={styles.divide} />
             <table>
-                {result.map((e, index) => {
+                {result.map(e => {
                     return (
                         <tr key={e.room + e.building}>
                             <ListItem roomInfo={e} root={userInfo.root} />

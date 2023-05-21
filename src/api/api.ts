@@ -50,8 +50,15 @@ export const postCreateRecord = async (args: RecordProps) => {
 };
 
 // 查看自习记录
-export const getRecords = (args: GetRecordProps) => {
-
+export const getRecords = async (args: GetRecordProps) => {
+    const temp: RecordProps = {
+        room: '101',
+        building: '2',
+        userId: '1',
+        startAt: '111',
+        period: 1111
+    }
+    return [temp] as RecordProps[];
 };
 
 // 创建一条教室使用记录
@@ -60,6 +67,13 @@ export const postCreateUsage = (args: UsageProps) => {
 };
 
 // 查看使用记录
-export const getUsages = (args: GetUsageProps) => {
-
+export const getUsages = async (args: GetUsageProps) => {
+    const temp: UsageProps = {
+        room: '101',
+        building: '2',
+        userId: '1',
+        startAt: '111',
+        time: '1',
+    }
+    return [temp] as UsageProps[];
 };
