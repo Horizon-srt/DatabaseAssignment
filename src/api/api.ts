@@ -62,8 +62,8 @@ export const getRecords = async (args: GetRecordProps) => {
 };
 
 // 创建一条教室使用记录
-export const postCreateUsage = (args: UsageProps) => {
-
+export const postCreateUsage = async (args: UsageProps) => {
+    return {};
 };
 
 // 查看使用记录

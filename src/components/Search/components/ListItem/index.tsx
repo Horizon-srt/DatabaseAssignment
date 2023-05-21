@@ -1,15 +1,41 @@
-import { RoomProps } from '@/utils/appType';
+import { RoomProps, UsageProps } from '@/utils/appType';
 import styles from './styles/style.module.css'
 import { useRouter } from 'next/router';
+import { Store } from '@/store/store';
+import { useStore } from 'reto';
+import { timeType } from '@/utils/dataType';
+import { postCreateUsage } from '@/api/api';
 
 interface ListItemProps {
     roomInfo: RoomProps;
     root: boolean;
+    time: timeType;
 }
 
-const ListItem: React.FC<ListItemProps> = ({ roomInfo, root }) => {
+const ListItem: React.FC<ListItemProps> = ({ roomInfo, root, time }) => {
     // TODO: 信息展示，按钮样式
     const router = useRouter();
+    const {userInfo} = useStore(Store);
+
+    const handleOccupy = async () => {
+        const temp: UsageProps = {
+            room: roomInfo.room,
+            building: roomInfo.building,
+            userId: userInfo.userId,
+            startAt: new Date().valueOf().toString(),
+            time: time.toString(),
+        }
+
+        const occupy = async () => {
+            await postCreateUsage(temp).then(res => {
+                console.log(res);
+            }).catch(err => {
+                console.log(err);
+            })
+        }
+
+        occupy();
+    };
     
     return (
         <>
@@ -20,7 +46,7 @@ const ListItem: React.FC<ListItemProps> = ({ roomInfo, root }) => {
             {roomInfo.avaliable ? (
                 <>{
                     root ? (
-                        <button>占用</button>
+                        <button onClick={handleOccupy}>占用</button>
                     ) : (
                         <button onClick={() => {
                             router.push({
