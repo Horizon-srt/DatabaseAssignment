@@ -10,14 +10,14 @@ import { useStore } from 'reto';
 
 const Search: React.FC = () => {
     const [building, setBuilding] = useState('1');
-    const [time, setTime] = useState('1');
+    const [time, setTime] = useState(1 as timeType);
     const [result, setResult] = useState([] as RoomProps[]);
     const {userInfo} = useStore(Store);
 
     const handleClick = async () => {
         const temp:SearchRoomsProps = {
             building: building,
-            time: time
+            time: time.toString()
         };
         await getRooms(temp).then(res => {
             setResult(res);
@@ -41,7 +41,7 @@ const Search: React.FC = () => {
                 </div>
                 <div>
                     时段：
-                    <select onChange={e => setTime(e.target.value)}>
+                    <select onChange={e => setTime(e.target.value as unknown as timeType)}>
                         {times.map(e => {
                             return (
                                 <option key={e} value={e}>{timeMap[e as timeType]}</option>
@@ -56,7 +56,7 @@ const Search: React.FC = () => {
                 {result.map(e => {
                     return (
                         <tr key={e.room + e.building}>
-                            <ListItem roomInfo={e} root={userInfo.root} />
+                            <ListItem roomInfo={e} root={userInfo.root} time={e.time as unknown as timeType} />
                         </tr>
                     );
                 })}

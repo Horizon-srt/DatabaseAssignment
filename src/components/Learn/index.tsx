@@ -7,24 +7,11 @@ import { GetRecordProps, RecordProps } from '@/utils/appType';
 import { getRecords } from '@/api/api';
 import ListItem from './components/ListItem';
 
-const Learn: React.FC = () => {
-    const {userInfo} = useStore(Store);
-    const [records, setRecords] = useState([] as RecordProps[]);
+interface LearnProps {
+    records: RecordProps[]
+}
 
-    useEffect(() => {
-        const getList = async () => {
-            const temp: GetRecordProps = {
-                userId: userInfo.userId
-            };
-            await getRecords(temp).then(res => {
-                setRecords(res);
-            }).catch(err => {
-                console.log(err);
-            });
-        };
-        getList();
-    });
-
+const Learn: React.FC<LearnProps> = ({ records }) => {
     return (
         <div className={main.contentCard}>
             <div className={main.contentCardTitle}>

@@ -7,24 +7,11 @@ import { Store } from '@/store/store';
 import { getUsages } from '@/api/api';
 import ListItem from './components/ListItem';
 
-const Occupy: React.FC = () => {
-    const {userInfo} = useStore(Store);
-    const [occupies, setOccupies] = useState([] as UsageProps[]);
+interface OccupyProps {
+    occupies: UsageProps[]
+}
 
-    useEffect(() => {
-        const getList = async () => {
-            const temp: GetUsageProps = {
-                userId: userInfo.userId
-            };
-            await getUsages(temp).then(res => {
-                setOccupies(res);
-            }).catch(err => {
-                console.log(err);
-            });
-        };
-        getList();
-    })
-
+const Occupy: React.FC<OccupyProps> = ({ occupies }) => {
     return (
         <div className={main.contentCard}>
             <div className={main.contentCardTitle}>

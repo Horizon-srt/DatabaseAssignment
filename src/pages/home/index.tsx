@@ -8,14 +8,43 @@ import { useEffect, useState } from 'react';
 import { MenuType } from '@/utils/dataType';
 import Occupy from '@/components/Occupy';
 import Learn from '@/components/Learn';
+import { GetRecordProps, GetUsageProps, RecordProps, UsageProps } from '@/utils/appType';
+import { getRecords, getUsages } from '@/api/api';
 
 const Home = () => {
     const {userInfo} = useStore(Store);
     const [menuState, setMenuState] = useState('search' as MenuType);
 
+    const [records, setRecords] = useState([] as RecordProps[]);
+    const [occupies, setOccupies] = useState([] as UsageProps[]);
+
     useEffect(() => {
-        console.log(menuState);
-    }, [menuState]);
+        if (menuState == 'learn') {
+            const getList = async () => {
+                const temp: GetRecordProps = {
+                    userId: userInfo.userId
+                };
+                await getRecords(temp).then(res => {
+                    setRecords(res);
+                }).catch(err => {
+                    console.log(err);
+                });
+            };
+            getList();
+        } else if (menuState == 'occupy') {
+            const getList = async () => {
+                const temp: GetUsageProps = {
+                    userId: userInfo.userId
+                };
+                await getUsages(temp).then(res => {
+                    setOccupies(res);
+                }).catch(err => {
+                    console.log(err);
+                });
+            };
+            getList();
+        }
+    }, [menuState, userInfo.userId]);
 
     return (
         <main className={styles.main}>
@@ -25,10 +54,10 @@ const Home = () => {
             </div>
             <div className={styles.content} >
                 {menuState === 'occupy' ? (
-                    <Occupy />
+                    <Occupy occupies={occupies} />
                 ) : (<>
                     {menuState === 'learn' ? (
-                        <Learn />
+                        <Learn records={records} />
                     ) :(
                         <Search />
                     )}
