@@ -22,7 +22,9 @@ const Home = () => {
         if (menuState == 'learn') {
             const getList = async () => {
                 const temp: GetRecordProps = {
-                    userId: userInfo.userId
+                    userId: userInfo.userId,
+                    num: 0,
+                    size: 0
                 };
                 await getRecords(temp).then(res => {
                     setRecords(res);

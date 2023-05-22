@@ -52,6 +52,8 @@ export interface RecordProps {
 
 // 获取自习记录参数
 export interface GetRecordProps {
+  num: number;
+  size: number;
   userId: string;
 };
 
