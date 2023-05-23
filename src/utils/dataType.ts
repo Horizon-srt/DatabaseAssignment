@@ -1,9 +1,11 @@
-export type MenuType = 'search' | 'learn' | 'occupy';
+export type MenuType = 'search' | 'learn' | 'occupy' | 'ownReview' | 'allReview';
 
 export const MenuMap = {
     'search': '查看教室',
     'learn': '我的自习',
-    'occupy': '我的占用'
+    'occupy': '我的占用',
+    'ownReview': '我的评论',
+    'allReview': '全部评论'
 };
 
 export const buildings = [1, 2, 3, 4];

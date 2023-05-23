@@ -1,30 +1,56 @@
 import main from '@/styles/main.module.css'
 import styles from './styles/style.module.css'
 import { useEffect, useState } from 'react';
-import { buildingMap, buildingType, buildings, timeMap, timeType, times } from '@/utils/dataType';
-import { RoomProps, SearchRoomsProps } from '@/utils/appType';
+import { buildingMap, buildingType, buildings, timeMap, timeType, times, MenuType } from '@/utils/dataType';
+import { GetAllReviewProps, RoomProps, SearchRoomsProps } from '@/utils/appType';
 import { getRooms } from '@/api/api';
 import ListItem from './components/ListItem';
 import { Store } from '@/store/store';
 import { useStore } from 'reto';
 
-const Search: React.FC = () => {
+interface SearchProps {
+    reviews: (args: GetAllReviewProps) => void;
+    setMenuState: (args: MenuType) => void;
+}
+
+const Search: React.FC<SearchProps> = ({ reviews, setMenuState }) => {
     const [building, setBuilding] = useState('1');
     const [time, setTime] = useState(1 as timeType);
     const [result, setResult] = useState([] as RoomProps[]);
     const {userInfo} = useStore(Store);
 
     const handleClick = async () => {
-        const temp:SearchRoomsProps = {
+        const temp: SearchRoomsProps = {
             building: building,
             time: time.toString()
         };
-        await getRooms(temp).then(res => {
-            setResult(res);
-            console.log(res);
-        }).catch(err => {
-            console.log(err);
-        })
+        // const result = await getRooms(temp);
+        // if (result) {
+        //     setResult(result);
+        // }
+        /* mock */
+        const room1 = {
+            room: '101',
+            building: '1',
+            time: '1',
+            name: 'a',
+            avaliable: true
+        }
+        const room2 = {
+            room: '102',
+            building: '1',
+            time: '1',
+            name: 'a',
+            avaliable: true
+        }
+        const room3 = {
+            room: '103',
+            building: '1',
+            time: '1',
+            name: 'a',
+            avaliable: true
+        }
+        setResult([room1, room2, room3]);
     }
 
     return (
@@ -57,7 +83,13 @@ const Search: React.FC = () => {
                 {result.map(e => {
                     return (
                         <tr key={e.room + e.building}>
-                            <ListItem roomInfo={e} root={userInfo.root} time={e.time as unknown as timeType} />
+                            <ListItem 
+                                roomInfo={e} 
+                                root={userInfo.root} 
+                                time={e.time as unknown as timeType} 
+                                reviews={reviews}
+                                setMenuState={setMenuState}
+                            />
                         </tr>
                     );
                 })}

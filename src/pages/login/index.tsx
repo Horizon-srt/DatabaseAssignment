@@ -7,10 +7,7 @@ import { UserInfoProps, UserLoginProps } from '@/utils/appType';
 import { postUserLogin } from '@/api/api';
 
 const Login = () => {
-    // TODO: 切换按钮
-
     const {setUserInfo, setLoginState, loginState} = useStore(Store);
-
     const [root, setRoot] = useState(false);
     const [id, setId] = useState('');  
     const [password, setPassword] = useState('');
@@ -45,22 +42,30 @@ const Login = () => {
             root: root,
         };
         if (id != '' && password != '') {
-            await postUserLogin(tempInfo).then(res => {
-                if (res.success) {
-                    const userInfo: UserInfoProps = {
-                        userId: res.user.userid,
-                        password: res.user.password,
-                        name: res.user.name,
-                        root: res.user.root == 1
-                    }
-                    setUserInfo(userInfo);
-                    setLoginState(true);
-                } else {
-                    alert('No such user!');
-                }
-            }).catch(err => {
-                console.log(err);
+            // await postUserLogin(tempInfo).then(res => {
+            //     if (res.success) {
+            //         const userInfo: UserInfoProps = {
+            //             userId: res.user.userid,
+            //             password: res.user.password,
+            //             name: res.user.name,
+            //             root: res.user.root == 1
+            //         }
+            //         setUserInfo(userInfo);
+            //         setLoginState(true);
+            //     } else {
+            //         alert('No such user!');
+            //     }
+            // }).catch(err => {
+            //     console.log(err);
+            // });
+            /* mock */
+            setUserInfo({
+                userId: '1',
+                password: '1',
+                name: 'a',
+                root: false
             });
+            setLoginState(true)
         } else {
             setShowPopup(true);
         }

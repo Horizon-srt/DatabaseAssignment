@@ -158,13 +158,11 @@ export const getAllReview = async (args: GetAllReviewProps) => {
     return reviewList;
 };
 
-
 // 根权限
-
 // 查看：传入楼号，返回教室列表
 export const getRoomInfo = async (args: GetRoomInfoProps) => {
     const roomList = [] as RoomInfo[];
-    axios.get(`htttp://localhost/dba/root?building=${args.building}`).then(res => {
+    axios.get(`http://localhost/dba/root?building=${args.building}`).then(res => {
         res.data.forEach((item: any) => {
             roomList.push({
                 roomId: item.roomid,
@@ -178,7 +176,7 @@ export const getRoomInfo = async (args: GetRoomInfoProps) => {
 
 // 添加：传入房间号，楼号
 export const postCreateRoom = async (args: PostCreateRoomProps) => {
-    const { data } = await axios.post('htttp://localhost/dba/root/cr', {
+    const { data } = await axios.post('http://localhost/dba/root/cr', {
         room: args.room,
         building: args.building
     });
@@ -187,7 +185,7 @@ export const postCreateRoom = async (args: PostCreateRoomProps) => {
 
 // 删除：传入房间id，不返回
 export const postRemoveRoom = async (args: PostRemoveRoomProps) => {
-    const { data } = await axios.post('htttp://localhost/dba/root/rm', {
+    const { data } = await axios.post('http://localhost/dba/root/rm', {
         roomid: args.roomId
     });
     return data;
@@ -195,7 +193,7 @@ export const postRemoveRoom = async (args: PostRemoveRoomProps) => {
 
 // 修改：传入房间id，
 export const postChangeRoom = async (args: PostChangeeRoomProps) => {
-    const { data } = await axios.post('htttp://localhost/dba/root/ch', {
+    const { data } = await axios.post('http://localhost/dba/root/ch', {
         roomid: args.roomId,
         room: args.room,
         building: args.building

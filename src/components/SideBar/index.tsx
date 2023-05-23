@@ -17,6 +17,8 @@ const SideBar: React.FC<SideBarProps> = ({ root, onSelect }) => {
             <div className={styles.divide} />
             <MenuButton label={'search'} onClick={onSelect} />
             <div className={styles.divide} />
+            <MenuButton label={'ownReview'} onClick={onSelect} />
+            <div className={styles.divide} />
             {root ? (
                 <MenuButton label={'occupy'} onClick={onSelect} />
             ) : (

@@ -1,9 +1,9 @@
-import { RoomProps, UsageProps } from '@/utils/appType';
+import { GetAllReviewProps, RoomProps, UsageProps } from '@/utils/appType';
 import styles from './styles/style.module.css'
 import { useRouter } from 'next/router';
 import { Store } from '@/store/store';
 import { useStore } from 'reto';
-import { timeType } from '@/utils/dataType';
+import { MenuType, timeType } from '@/utils/dataType';
 import { postCreateUsage } from '@/api/api';
 import RoomInfo from '../RoomInfo';
 
@@ -11,9 +11,11 @@ interface ListItemProps {
     roomInfo: RoomProps;
     root: boolean;
     time: timeType;
+    reviews: (args: GetAllReviewProps) => void;
+    setMenuState: (args: MenuType) => void;
 }
 
-const ListItem: React.FC<ListItemProps> = ({ roomInfo, root, time }) => {
+const ListItem: React.FC<ListItemProps> = ({ roomInfo, root, time, reviews, setMenuState }) => {
     const router = useRouter();
     const {userInfo} = useStore(Store);
 
@@ -43,6 +45,15 @@ const ListItem: React.FC<ListItemProps> = ({ roomInfo, root, time }) => {
             <div className={styles.info}>
                 <RoomInfo roomInfo={roomInfo} ></RoomInfo>
             </div>
+            <button onClick={() => {
+                reviews({
+                    room: roomInfo.room,
+                    building: roomInfo.building
+                });
+                setMenuState('allReview');
+            }}>
+                评论
+            </button>
             {roomInfo.avaliable ? (
                 <>{
                     root ? (
