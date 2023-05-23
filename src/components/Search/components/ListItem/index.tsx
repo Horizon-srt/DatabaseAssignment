@@ -5,6 +5,7 @@ import { Store } from '@/store/store';
 import { useStore } from 'reto';
 import { timeType } from '@/utils/dataType';
 import { postCreateUsage } from '@/api/api';
+import RoomInfo from '../RoomInfo';
 
 interface ListItemProps {
     roomInfo: RoomProps;
@@ -16,6 +17,7 @@ const ListItem: React.FC<ListItemProps> = ({ roomInfo, root, time }) => {
     // TODO: 信息展示，按钮样式
     const router = useRouter();
     const {userInfo} = useStore(Store);
+    console.log(roomInfo);
 
     const handleOccupy = async () => {
         const temp: UsageProps = {
@@ -41,14 +43,14 @@ const ListItem: React.FC<ListItemProps> = ({ roomInfo, root, time }) => {
         <>
         <div className={styles.listbox}>
             <div className={styles.info}>
-                {roomInfo.room + roomInfo.building}
+                <RoomInfo roomInfo={roomInfo} ></RoomInfo>
             </div>
             {roomInfo.avaliable ? (
                 <>{
                     root ? (
                         <button onClick={handleOccupy}>占用</button>
                     ) : (
-                        <button onClick={() => {
+                        <button  className = {styles.studyButton} onClick={() => {
                             router.push({
                                 pathname: 'learning',
                                 query: {
@@ -57,12 +59,12 @@ const ListItem: React.FC<ListItemProps> = ({ roomInfo, root, time }) => {
                                 }
                             })
                         }}>
-                            学习
+                            去学习
                         </button>
                     )
                 }</>
             ) : (
-                <button>不可用</button>
+                <button className = {styles.useButton}>不可用</button>
             )}
         </div>
         <div className={styles.divide} />

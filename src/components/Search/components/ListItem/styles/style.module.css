@@ -8,11 +8,23 @@
 }
 
 .info {
-    background-color: black;
+    /* background-color: black; */
 }
 
-.button {
+.useButton {
     border-radius: 5px;
+    border: 1px ;
+    padding: 7px;
+    color: white;
+    background-color: red;
+}
+
+.studyButton {
+    border-radius: 5px;
+    border: 1px solid;
+    padding: 7px;
+    background-color: #3cc9ac;
+    color: white;
 }
 
 .divide {

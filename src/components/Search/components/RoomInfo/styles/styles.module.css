@@ -1,0 +1,34 @@
+.contain {
+    font-size: 20px;
+    display: flex;
+}
+
+.blackPart {
+    display: grid;
+    place-items: center;
+}
+
+.name {
+    margin-left: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.building{
+    margin-left: 10px;
+    font-size:medium;
+    color: gray;
+}
+
+.room{
+    font-size: 30px;
+}
+
+.firstLine{
+    place-items: center;
+}
+
+.time{
+    color: gray;
+}
