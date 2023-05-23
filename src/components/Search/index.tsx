@@ -21,6 +21,7 @@ const Search: React.FC = () => {
         };
         await getRooms(temp).then(res => {
             setResult(res);
+            console.log(res);
         }).catch(err => {
             console.log(err);
         })

@@ -80,3 +80,76 @@ export interface GetUsageProps {
 export interface UsageListProps {
   usageList: UsageProps[];
 };
+
+
+// 创建评论
+export interface PostReviewProps {
+  userId: string;
+  room: string;
+  building: string;
+  comment: string;
+  rate: number;
+};
+
+// 查看自己评论
+// 传入账号，返回评论列表
+export interface GetOwnReviewListProps {
+  userId: string;
+};
+
+// 查看全部评论
+// 传入房间号，楼号，返回评论列表
+export interface GetAllReviewProps {
+  room: string;
+  building: string;
+};
+
+export interface ReviewListProps {
+  reviewList: ReviewProps[];
+};
+
+// 评论数据
+export interface ReviewProps {
+  name: string;
+  room: string;
+  building: string;
+  comment: string;
+  rate: string;
+  root: boolean;
+};
+
+
+// 根权限
+// 查看：传入楼号，返回教室列表
+export interface GetRoomInfoProps {
+  building: string;
+};
+
+// 房间信息
+export interface RoomInfoList {
+  roomInfoList: RoomInfo[];
+};
+
+// 添加：传入房间号，楼号
+export interface PostCreateRoomProps {
+  room: string;
+  building: string;
+};
+
+// 删除：传入房间id，不返回
+export interface PostRemoveRoomProps {
+  roomId: string;
+};
+
+// 修改：传入房间id，
+export interface PostChangeeRoomProps {
+  roomId: string;
+  room: string;
+  building: string;
+};
+
+export interface RoomInfo {
+  roomId: string;
+  room: string;
+  building: string;
+};

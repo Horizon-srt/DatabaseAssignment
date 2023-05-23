@@ -29,7 +29,7 @@ const Register = () => {
             }).catch(err => {
                 console.log(err);
             })
-            router.back();
+            router.push('/login');
         } else {
             setShowPopup(true);
         }

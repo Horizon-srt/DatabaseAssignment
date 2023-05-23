@@ -14,10 +14,8 @@ interface ListItemProps {
 }
 
 const ListItem: React.FC<ListItemProps> = ({ roomInfo, root, time }) => {
-    // TODO: 信息展示，按钮样式
     const router = useRouter();
     const {userInfo} = useStore(Store);
-    console.log(roomInfo);
 
     const handleOccupy = async () => {
         const temp: UsageProps = {

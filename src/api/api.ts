@@ -1,124 +1,204 @@
-import { GetRecordProps, GetUsageProps, RecordProps, RoomListProps, RoomProps, SearchRoomsProps, UsageProps, UserInfoProps, UserLoginProps, UserRegisterProps } from "@/utils/appType";
+import { GetAllReviewProps, GetOwnReviewListProps, GetRecordProps, GetRoomInfoProps, GetUsageProps, PostChangeeRoomProps, PostCreateRoomProps, PostRemoveRoomProps, PostReviewProps, RecordProps, ReviewProps, RoomInfo, RoomListProps, RoomProps, SearchRoomsProps, UsageProps, UserInfoProps, UserLoginProps, UserRegisterProps } from "@/utils/appType";
 import axios from 'axios'
 
 // 获取用户数据
 export const postUserLogin = async (args: UserLoginProps) => {
-    axios.post('localhost/dba/user/login', {
+    const { data } = await axios.post('http://localhost:80/dba/user/login', {
         userid: args.userId,
         password: args.password,
-        root: args.root
-    }).then(res => {
-        console.log(res);
-    }).catch(err => {
-        console.log(err);
+        root: args.root == true ? 1 : 0
     });
-    return {};
+    return data;
 };
 
 // 注册
 export const postUserRegister = async (args: UserRegisterProps) => {
-    axios.post('localhost/dba/user/register', {
+    const { data } = await axios.post('http://localhost:80/dba/user/register', {
         userid: args.userId,
         password: args.password,
         name: args.name,
-        root: args.root
-    }).then(res => {
-        console.log(res);
-    }).catch(err => {
-        console.log(err);
+        root: args.root == true ? 1 : 0
     });
-    return {};
+    return data;
 };
 
 // 查询当天空教室
 export const getRooms =  async (args: SearchRoomsProps) => {
-    const room1: RoomProps = {
-        room: '101',
-        building: '1',
-        time: '1',
-        name: 'aaa',
-        avaliable: false
-    }
-    const room2: RoomProps = {
-        room: '102',
-        building: '1',
-        time: '1',
-        name: '',
-        avaliable: true
-    }
-    const res: RoomListProps = {
-        roomList: [room1, room2],
-    };
-    axios.get(`localhost/dba/room?building=${args.building}&time=${args.time}`).then(res => {
-        console.log(res);
+    const roomList = [] as RoomProps[];
+    axios.get(`http://localhost:80/dba/room?building=${args.building}&time=${args.time}`).then(res => {
+        console.log(res.data);
+        res.data.forEach((item: any) => {
+            roomList.push({
+                room: item.room,
+                building: item.building,
+                time: item.time,
+                name: item.user,
+                avaliable: item.availiable === 1 ? true : false,
+            } as RoomProps);
+        });
     }).catch(err => {
         console.log(err);
-    });
-    return res.roomList;
+    })
+    return roomList;
 };
 
 // 创建一条自习记录
 export const postCreateRecord = async (args: RecordProps) => {
-    axios.post('localhost/dba/record', {
+    const { data } = await axios.post('http://localhost:80/dba/record', {
         room: args.room,
         building: args.building,
         user: args.userId,
         startAt: args.startAt,
         period: args.period
-    }).then(res => {
-        console.log(res);
-    }).catch(err => {
-        console.log(err);
-    });
-    return {};
+    })
+    return data;
 };
 
 // 查看自习记录
 export const getRecords = async (args: GetRecordProps) => {
-    const temp: RecordProps = {
-        room: '101',
-        building: '2',
-        userId: '1',
-        startAt: '111',
-        period: 1111
-    }
-    axios.get(`localhost/dba/record?num=${args.num}&size=${args.size}&user=${args.userId}`).then(res => {
-        console.log(res);
+    const recordList = [] as RecordProps[];
+    axios.get(`http://localhost:80/dba/record?num=${args.num}&size=${args.size}&user=${args.userId}`).then(res => {
+        res.data.forEach((item: any) => {
+            recordList.push({
+                room: item.room,
+                building: item.building,
+                userId: item.user,
+                startAt: item.startat,
+                period: item.period,
+            } as RecordProps);
+        })
     }).catch(err => {
         console.log(err);
     });
-    return [temp] as RecordProps[];
+    return recordList;
 };
 
 // 创建一条教室使用记录
 export const postCreateUsage = async (args: UsageProps) => {
-    axios.post('localhost/dba/usage', {
+    const { data } = await axios.post('http://localhost:80/dba/usage', {
         room: args.room,
         building: args.building,
         user: args.userId, // user
         startAt: args.startAt,
         time: args.time
-    }).then(res => {
-        console.log(res);
-    }).catch(err => {
-        console.log(err);
-    });
-    return {};
+    })
+    return data;
 };
 
 // 查看使用记录
 export const getUsages = async (args: GetUsageProps) => {
-    const temp: UsageProps = {
-        room: '101',
-        building: '2',
-        userId: '1',
-        startAt: '111',
-        time: '1',
-    }
-    axios.get(`localhost/dba/usage?user=${args.userId}`).then(res => {
-        console.log(res);
+    const usage = [] as UsageProps[];
+    axios.get(`http://localhost:80/dba/usage?user=${args.userId}`).then(res => {
+        // console.log(res);
+        // return res;
+        res.data.forEach((item: any) => {
+            usage.push({
+                room: item.room,
+                building: item.building,
+                userId: item.user,
+                startAt: item.startat,
+                time: item.time
+            });
+        });
     }).catch(err => {
         console.log(err);
     });
-    return [temp] as UsageProps[];
+    return usage;
+};
+
+// 创建评论
+// 传入账号，房间号，建筑，评论。
+export const postReview = async (args: PostReviewProps) => {
+    const { data } = await axios.post('http://localhost/dba/review', {
+        userid: args.userId,
+        room: args.room,
+        building: args.building,
+        comment: args.comment,
+        rate: args.rate
+    });
+    return data;
+};
+
+// 查看自己评论
+// 传入账号，返回评论列表
+export const getOwnReview = async (args: GetOwnReviewListProps) => {
+    const reviewList = [] as ReviewProps[];
+    axios.get(`http://localhost/dba/review?userid=${args.userId}`).then(res => {
+        res.data.forEach((item: any) => {
+            reviewList.push({
+                name: item.name,
+                room: item.room,
+                building: item.building,
+                comment: item.comment,
+                rate: item.rate,
+                root: item.root
+            })
+        })
+    });
+    return reviewList;
+};
+
+// 查看全部评论
+// 传入房间号，楼号，返回评论列表
+
+export const getAllReview = async (args: GetAllReviewProps) => {
+    const reviewList = [] as ReviewProps[];
+    axios.get(`http://localhost/dba/review?room=${args.room}&building=${args.building}`).then(res => {
+        res.data.forEach((item: any) => {
+            reviewList.push({
+                name: item.name,
+                room: item.room,
+                building: item.building,
+                comment: item.comment,
+                rate: item.rate,
+                root: item.root
+            })
+        })
+    });
+    return reviewList;
+};
+
+
+// 根权限
+
+// 查看：传入楼号，返回教室列表
+export const getRoomInfo = async (args: GetRoomInfoProps) => {
+    const roomList = [] as RoomInfo[];
+    axios.get(`htttp://localhost/dba/root?building=${args.building}`).then(res => {
+        res.data.forEach((item: any) => {
+            roomList.push({
+                roomId: item.roomid,
+                room: item.room,
+                building: item.building
+            })
+        })
+    });
+    return roomList;
+};
+
+// 添加：传入房间号，楼号
+export const postCreateRoom = async (args: PostCreateRoomProps) => {
+    const { data } = await axios.post('htttp://localhost/dba/root/cr', {
+        room: args.room,
+        building: args.building
+    });
+    return data;
+};
+
+// 删除：传入房间id，不返回
+export const postRemoveRoom = async (args: PostRemoveRoomProps) => {
+    const { data } = await axios.post('htttp://localhost/dba/root/rm', {
+        roomid: args.roomId
+    });
+    return data;
+};
+
+// 修改：传入房间id，
+export const postChangeRoom = async (args: PostChangeeRoomProps) => {
+    const { data } = await axios.post('htttp://localhost/dba/root/ch', {
+        roomid: args.roomId,
+        room: args.room,
+        building: args.building
+    });
+    return data;
 };

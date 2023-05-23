@@ -21,16 +21,13 @@ const Home = () => {
     useEffect(() => {
         if (menuState == 'learn') {
             const getList = async () => {
-                const temp: GetRecordProps = {
+                const getRecord: GetRecordProps = {
                     userId: userInfo.userId,
                     num: 0,
                     size: 0
                 };
-                await getRecords(temp).then(res => {
-                    setRecords(res);
-                }).catch(err => {
-                    console.log(err);
-                });
+                const temp = await getRecords(getRecord);
+                setRecords(temp);
             };
             getList();
         } else if (menuState == 'occupy') {

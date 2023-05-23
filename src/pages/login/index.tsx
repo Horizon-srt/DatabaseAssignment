@@ -3,7 +3,7 @@ import styles from '../Login/styles/style.module.css'
 import router from 'next/router';
 import { Store } from '@/store/store';
 import { useStore } from 'reto';
-import { UserLoginProps } from '@/utils/appType';
+import { UserInfoProps, UserLoginProps } from '@/utils/appType';
 import { postUserLogin } from '@/api/api';
 
 const Login = () => {
@@ -46,11 +46,17 @@ const Login = () => {
         };
         if (id != '' && password != '') {
             await postUserLogin(tempInfo).then(res => {
-                if (res.userId) {
-                    setUserInfo(res);
+                if (res.success) {
+                    const userInfo: UserInfoProps = {
+                        userId: res.user.userid,
+                        password: res.user.password,
+                        name: res.user.name,
+                        root: res.user.root == 1
+                    }
+                    setUserInfo(userInfo);
                     setLoginState(true);
                 } else {
-                    setShowPopup(true);
+                    alert('No such user!');
                 }
             }).catch(err => {
                 console.log(err);
