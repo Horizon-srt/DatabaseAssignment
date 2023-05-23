@@ -16,3 +16,10 @@
     margin-right: 20px;
     background-color: rgb(198, 197, 197);
 }
+
+.title {
+    font-size: 30px;
+    font-weight: 600;
+    margin-left:40px;
+    margin-top: 15px;
+}
