@@ -1,18 +1,16 @@
 import styles from './styles/style.module.css'
-import { RecordProps } from "@/utils/appType"
+import { ReviewProps } from "@/utils/appType"
 
 interface ListItemProps {
-    recordInfo: RecordProps
+    reviewInfo: ReviewProps
 }
 
-const ListItem: React.FC<ListItemProps> = ({ recordInfo }) => {
+const ListItem: React.FC<ListItemProps> = ({ reviewInfo }) => {
     return (
         <>
             <div className={styles.listbox}>
-                <div className={styles.info}>
-                    {recordInfo.room + recordInfo.building}
-                </div>
-                <div>{`${recordInfo.startAt}+${recordInfo.period}`}</div>
+                <div>{reviewInfo.name}</div>
+                <div>{reviewInfo.comment}</div>
             </div>
             <div className={styles.divide} />
         </>

@@ -1,0 +1,52 @@
+.divide {
+    height: 2px;
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color: rgb(198, 197, 197);
+}
+
+.listbox {
+    width: 100%;
+    height: 60px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.change {
+    border-radius: 5px;
+    border: 1px solid;
+    padding: 7px;
+    background-color: green;
+    color: white;
+}
+
+.delete {
+    border-radius: 5px;
+    border: 1px solid;
+    padding: 7px;
+    background-color: red;
+    color: white;
+}
+
+.listbox {
+    width: 100%;
+    height: 60px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.changebox {
+    padding-left: 20px;
+    padding-bottom: 10px;
+}
+
+.changeinput {
+    width: 70px;
+    border: 2px solid blue;
+    border-radius: 5px;
+    margin-right: 10px;
+}

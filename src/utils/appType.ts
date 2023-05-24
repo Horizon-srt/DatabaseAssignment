@@ -153,3 +153,8 @@ export interface RoomInfo {
   room: string;
   building: string;
 };
+
+export interface RootLoginProps {
+  username: string;
+  password: string;
+}

@@ -1,12 +1,9 @@
 import main from '@/styles/main.module.css'
 import styles from './styles/style.module.css'
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { buildingMap, buildingType, buildings, timeMap, timeType, times, MenuType } from '@/utils/dataType';
 import { GetAllReviewProps, RoomProps, SearchRoomsProps } from '@/utils/appType';
 import { getRooms } from '@/api/api';
-import ListItem from './components/ListItem';
-import { Store } from '@/store/store';
-import { useStore } from 'reto';
 import List from './components/List';
 
 interface SearchProps {
@@ -18,22 +15,18 @@ const Search: React.FC<SearchProps> = ({ reviews, setMenuState }) => {
     const [building, setBuilding] = useState('1');
     const [time, setTime] = useState(1 as timeType);
     const [result, setResult] = useState([] as RoomProps[]);
-    const {userInfo} = useStore(Store);
 
     const handleClick = async () => {
         const temp: SearchRoomsProps = {
             building: building,
             time: time.toString()
         };
-        const tempList = await getRooms(temp);
-        if (tempList) {
-            setResult(tempList);
-        }
+        await getRooms(temp).then(res => {
+            console.log(res);
+            setResult(res);
+            console.log(result);
+        });
     }
-
-    useEffect(() => {
-        // console.log(result);
-    }, [result]);
 
     return (
         <div className={main.contentCard}>

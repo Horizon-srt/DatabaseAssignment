@@ -1,6 +1,7 @@
 import main from '@/styles/main.module.css'
 import styles from './styles/style.module.css'
 import { ReviewProps } from '@/utils/appType';
+import ListItem from './components/ListItem';
 
 interface OwnReviewProps {
     ownReview: ReviewProps[]
@@ -17,7 +18,7 @@ const OwnReview: React.FC<OwnReviewProps> = ({ ownReview }) => {
                 {ownReview.map(e => {
                     return (
                         <li key={e.room + e.building}>
-                            {/* <ListItem recordInfo={e} /> */}
+                            <ListItem reviewInfo={e} />
                         </li>
                     );
                 })}

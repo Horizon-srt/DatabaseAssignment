@@ -1,5 +1,13 @@
-import { GetAllReviewProps, GetOwnReviewListProps, GetRecordProps, GetRoomInfoProps, GetUsageProps, PostChangeeRoomProps, PostCreateRoomProps, PostRemoveRoomProps, PostReviewProps, RecordProps, ReviewProps, RoomInfo, RoomListProps, RoomProps, SearchRoomsProps, UsageProps, UserInfoProps, UserLoginProps, UserRegisterProps } from "@/utils/appType";
+import { GetAllReviewProps, GetOwnReviewListProps, GetRecordProps, GetRoomInfoProps, GetUsageProps, PostChangeeRoomProps, PostCreateRoomProps, PostRemoveRoomProps, PostReviewProps, RecordProps, ReviewProps, RoomInfo, RoomListProps, RoomProps, RootLoginProps, SearchRoomsProps, UsageProps, UserInfoProps, UserLoginProps, UserRegisterProps } from "@/utils/appType";
 import axios from 'axios'
+
+// root
+export const postRootLogin = async (args: RootLoginProps) => {
+    const { data } = await axios.post('http://localhost:80/dba/root/login', {
+        ...args
+    });
+    return data;
+};
 
 // 获取用户数据
 export const postUserLogin = async (args: UserLoginProps) => {
@@ -163,7 +171,7 @@ export const getRoomInfo = async (args: GetRoomInfoProps) => {
     axios.get(`http://localhost/dba/root?building=${args.building}`).then(res => {
         res.data.forEach((item: any) => {
             roomList.push({
-                roomId: item.roomid,
+                roomId: item.id,
                 room: item.room,
                 building: item.building
             })
@@ -183,16 +191,14 @@ export const postCreateRoom = async (args: PostCreateRoomProps) => {
 
 // 删除：传入房间id，不返回
 export const postRemoveRoom = async (args: PostRemoveRoomProps) => {
-    const { data } = await axios.post('http://localhost/dba/root/rm', {
-        roomid: args.roomId
-    });
+    const { data } = await axios.post(`http://localhost/dba/root/rm?id=${args.roomId}`);
     return data;
 };
 
 // 修改：传入房间id，
 export const postChangeRoom = async (args: PostChangeeRoomProps) => {
     const { data } = await axios.post('http://localhost/dba/root/ch', {
-        roomid: args.roomId,
+        id: args.roomId,
         room: args.room,
         building: args.building
     });

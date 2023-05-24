@@ -12,16 +12,22 @@ import { GetAllReviewProps, GetOwnReviewListProps, GetRecordProps, GetUsageProps
 import { getAllReview, getOwnReview, getRecords, getUsages } from '@/api/api';
 import OwnReview from '@/components/OwnReview';
 import AllReview from '@/components/AllReview';
+import router from 'next/router';
 
 const Home = () => {
-    const {userInfo} = useStore(Store);
+    const {userInfo, loginState} = useStore(Store);
+    useEffect(() => {
+        if (!loginState) {
+            router.push('/login');
+        }
+    }, [loginState]);
+
     const [menuState, setMenuState] = useState('search' as MenuType);
 
     const [records, setRecords] = useState([] as RecordProps[]);
     const [occupies, setOccupies] = useState([] as UsageProps[]);
     const [ownReview, setOwnReview] = useState([] as ReviewProps[]);
     const [allReview, setAllReview] = useState([] as ReviewProps[]);
-
     const [reviews, setReviews] = useState({} as GetAllReviewProps);
 
     useEffect(() => {

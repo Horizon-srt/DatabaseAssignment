@@ -4,10 +4,10 @@ import router from 'next/router';
 import { Store } from '@/store/store';
 import { useStore } from 'reto';
 import { UserInfoProps, UserLoginProps } from '@/utils/appType';
-import { postUserLogin } from '@/api/api';
+import { postRootLogin, postUserLogin } from '@/api/api';
 
 const Login = () => {
-    const {setUserInfo, setLoginState, loginState} = useStore(Store);
+    const {setUserInfo, setLoginState, loginState, setRootLogin} = useStore(Store);
     const [root, setRoot] = useState(false);
     const [id, setId] = useState('');  
     const [password, setPassword] = useState('');
@@ -58,16 +58,22 @@ const Login = () => {
             }).catch(err => {
                 console.log(err);
             });
-            /* mock */
-            // setUserInfo({
-            //     userId: '1',
-            //     password: '1',
-            //     name: 'a',
-            //     root: false
-            // });
-            // setLoginState(true)
         } else {
             setShowPopup(true);
+        }
+    }
+
+    const handleRootLogin = async () => {
+        const root = await postRootLogin({
+            username: id,
+            password: password
+        });
+        console.log(root);
+        if (root.success) {
+            setRootLogin(true);
+            router.push('/root');
+        } else {
+            alert('No such user!');
         }
     }
 
@@ -98,6 +104,7 @@ const Login = () => {
                 </div>
             </div>
             <button className={styles.loginButton} onClick={handleLogin}>登陆</button>
+            <button hidden={!root} className={styles.loginButton} onClick={handleRootLogin}>root登录</button>
             <button className={styles.registerButton} onClick={() => {router.push('/register');}}>注册账号</button>
         </div>
 

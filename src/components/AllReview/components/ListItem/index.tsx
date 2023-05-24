@@ -1,5 +1,5 @@
 import styles from './styles/style.module.css'
-import { RecordProps, ReviewProps } from "@/utils/appType"
+import { ReviewProps } from "@/utils/appType"
 
 interface ListItemProps {
     reviewInfo: ReviewProps

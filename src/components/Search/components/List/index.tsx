@@ -14,10 +14,6 @@ interface ListProps {
 const List: React.FC<ListProps> = ({ result, reviews, setMenuState }) => {
     const {userInfo} = useStore(Store);
 
-    useEffect(() => {
-        // console.log(result);
-    }, [result])
-
     return (
         <ul>
             {result.map(e => {
