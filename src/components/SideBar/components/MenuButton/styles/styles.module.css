@@ -9,7 +9,7 @@
 
 .label {
     display: flex;
-    font-size: 25px;
+    font-size: larger;
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;

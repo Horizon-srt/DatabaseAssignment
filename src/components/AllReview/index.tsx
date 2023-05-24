@@ -11,9 +11,10 @@ import ListItem from './components/ListItem';
 interface AllReviewProps {
     allReview: ReviewProps[];
     reviews: GetAllReviewProps;
+    setShouldUpdate: (args: boolean) => void
 }
 
-const AllReview: React.FC<AllReviewProps> = ({ allReview, reviews }) => {
+const AllReview: React.FC<AllReviewProps> = ({ allReview, reviews, setShouldUpdate }) => {
     const [message, setMessage] = useState('');
     const {userInfo} = useStore(Store);
 
@@ -26,6 +27,9 @@ const AllReview: React.FC<AllReviewProps> = ({ allReview, reviews }) => {
             rate: 1
         }
         await postReview(temp);
+        setMessage('');
+        alert('发送成功')
+        setShouldUpdate(true);
     }
 
     return (
@@ -35,7 +39,7 @@ const AllReview: React.FC<AllReviewProps> = ({ allReview, reviews }) => {
             </div>
             <div className={styles.divide} />
             <div className={styles.commentbox} >
-                <input className={styles.input} onChange={e => {
+                <input className={styles.input} value={message} onChange={e => {
                     setMessage(e.target.value)
                 }} />
                 <button className={styles.button} onClick={handleSubmit}>提交</button>

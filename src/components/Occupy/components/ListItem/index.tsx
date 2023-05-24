@@ -1,3 +1,4 @@
+import { buildingMap, buildingType, timeMap, timeType } from '@/utils/dataType';
 import styles from './styles/style.module.css'
 import { UsageProps } from "@/utils/appType"
 
@@ -10,9 +11,10 @@ const ListItem: React.FC<ListItemProps> = ({ occupyInfo }) => {
         <>
             <div className={styles.listbox}>
                 <div className={styles.info}>
-                    {occupyInfo.room + occupyInfo.building}
+                    <div style={{fontSize:'large'}}>{occupyInfo.room}</div>
+                    <div style={{fontSize:'small',color:'gray'}}>{buildingMap[occupyInfo.building as unknown as buildingType]}</div>
                 </div>
-                <div>{`${occupyInfo.time}`}</div>
+                <div>{timeMap[occupyInfo.time as unknown as timeType]}</div>
             </div>
             <div className={styles.divide} />
         </>

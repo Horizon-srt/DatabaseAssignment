@@ -79,7 +79,7 @@ const Login = () => {
 
     return (
         <main className={styles.main}>
-            <button className={styles.button} onClick={switchRoles}>切换身份</button>
+        <button className={styles.button} onClick={switchRoles}>切换身份</button>
         <div className={styles.contain}>
             <p className={styles.header}>{root ? '教师' : '学生'}登陆</p>
             <div>

@@ -6,19 +6,15 @@ interface InfoProps {
 }
 
 const RoomInfo: React.FC<InfoProps> = ({ roomInfo }) => {
-    const name: string = (roomInfo.name != "" ? "占用人："+roomInfo.name : '占用人：-');
     const building: string = ("第 "+roomInfo.building+" 教学楼");
     const time: string = ("第 "+roomInfo.time+" 节课")
     return (
-        <div className={`${styles.contain} ${styles.spacing}`}>
-            <div className={styles.blackPart}>     
-                <div className={styles.firstLine}>
-                    <a className={styles.room}> {roomInfo.room} </a>
-                    <a className={styles.building}> {building}</a>
-                </div>
-                <a className={styles.time}> {time}</a>
+        <div className={styles.contain}>  
+            <div className={styles.firstLine}>
+                <div className={styles.room}>{roomInfo.room}</div>
+                <div className={styles.time}>{time}</div>
             </div>
-            <a className={styles.name}> {name} </a>
+            <div className={styles.building}>{building}</div>
         </div>
     )
 }

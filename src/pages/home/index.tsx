@@ -23,6 +23,7 @@ const Home = () => {
     }, [loginState]);
 
     const [menuState, setMenuState] = useState('search' as MenuType);
+    const [shouldUpdate, setShouldupdate] = useState(false);
 
     const [records, setRecords] = useState([] as RecordProps[]);
     const [occupies, setOccupies] = useState([] as UsageProps[]);
@@ -67,11 +68,12 @@ const Home = () => {
                     building: reviews.building
                 };
                 const temp = await getAllReview(getAll);
+                setShouldupdate(false);
                 setAllReview(temp);
             };
             getList();
         }
-    }, [menuState, reviews.building, reviews.room, userInfo.userId]);
+    }, [menuState, reviews.building, reviews.room, userInfo.userId, shouldUpdate]);
 
     return (
         <main className={styles.main}>
@@ -90,7 +92,7 @@ const Home = () => {
                             <OwnReview ownReview={ownReview} />
                         ) : (<>
                             {menuState === 'allReview' ? (
-                                <AllReview allReview={allReview} reviews={reviews} />
+                                <AllReview allReview={allReview} reviews={reviews} setShouldUpdate={setShouldupdate} />
                             ) : (
                                 <Search reviews={setReviews} setMenuState={setMenuState} />
                             )

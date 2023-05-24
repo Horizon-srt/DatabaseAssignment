@@ -33,7 +33,7 @@ export const postUserRegister = async (args: UserRegisterProps) => {
 // 查询当天空教室
 export const getRooms =  async (args: SearchRoomsProps) => {
     const roomList = [] as RoomProps[];
-    axios.get(`http://localhost:80/dba/room?building=${args.building}&time=${args.time}`).then(res => {
+    await axios.get(`http://localhost:80/dba/room?building=${args.building}&time=${args.time}`).then(res => {
         res.data.forEach((item: any) => {
             roomList.push({
                 room: item.room,
@@ -64,7 +64,8 @@ export const postCreateRecord = async (args: RecordProps) => {
 // 查看自习记录
 export const getRecords = async (args: GetRecordProps) => {
     const recordList = [] as RecordProps[];
-    axios.get(`http://localhost:80/dba/record?num=${args.num}&size=${args.size}&user=${args.userId}`).then(res => {
+    await axios.get(`http://localhost:80/dba/record?num=${args.num}&size=${args.size}&user=${args.userId}`).then(res => {
+        console.log(res);
         res.data.forEach((item: any) => {
             recordList.push({
                 room: item.room,
@@ -95,7 +96,7 @@ export const postCreateUsage = async (args: UsageProps) => {
 // 查看使用记录
 export const getUsages = async (args: GetUsageProps) => {
     const usage = [] as UsageProps[];
-    axios.get(`http://localhost:80/dba/usage?userid=${args.userId}`).then(res => {
+    await axios.get(`http://localhost:80/dba/usage?userid=${args.userId}`).then(res => {
         console.log(res);
         res.data.forEach((item: any) => {
             usage.push({
@@ -129,7 +130,8 @@ export const postReview = async (args: PostReviewProps) => {
 // 传入账号，返回评论列表
 export const getOwnReview = async (args: GetOwnReviewListProps) => {
     const reviewList = [] as ReviewProps[];
-    axios.get(`http://localhost/dba/review/own?userid=${args.userId}`).then(res => {
+    await axios.get(`http://localhost/dba/review/own?userid=${args.userId}`).then(res => {
+        console.log(res)
         res.data.forEach((item: any) => {
             reviewList.push({
                 name: item.name,
@@ -149,7 +151,7 @@ export const getOwnReview = async (args: GetOwnReviewListProps) => {
 
 export const getAllReview = async (args: GetAllReviewProps) => {
     const reviewList = [] as ReviewProps[];
-    axios.get(`http://localhost/dba/review/all?room=${args.room}&building=${args.building}`).then(res => {
+    await axios.get(`http://localhost/dba/review/all?room=${args.room}&building=${args.building}`).then(res => {
         res.data.forEach((item: any) => {
             reviewList.push({
                 name: item.name,
@@ -168,7 +170,7 @@ export const getAllReview = async (args: GetAllReviewProps) => {
 // 查看：传入楼号，返回教室列表
 export const getRoomInfo = async (args: GetRoomInfoProps) => {
     const roomList = [] as RoomInfo[];
-    axios.get(`http://localhost/dba/root?building=${args.building}`).then(res => {
+    await axios.get(`http://localhost/dba/root?building=${args.building}`).then(res => {
         res.data.forEach((item: any) => {
             roomList.push({
                 roomId: item.id,

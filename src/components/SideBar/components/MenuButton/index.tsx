@@ -8,7 +8,6 @@ interface MenuButtonProps {
 
 const MenuButton: React.FC<MenuButtonProps> = ({ label, onClick }) => {
     const handleClick = () => {
-        console.log(label);
         onClick(label);
     }
 

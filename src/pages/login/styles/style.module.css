@@ -13,19 +13,17 @@
 }
   
 .contain {
-    /* margin-top: 80px; */
     display: flex;
     background-color: #b3e0ed;
-    flex-direction: column; /* 将元素纵向排列 */
-    justify-content: center; /* 在垂直方向上居中对齐 */
-    align-items: center; /* 在水平方向上居中对齐 */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     border-radius: 5px;
     border: 1px solid black;
     padding-left: 100px;
     padding-right: 100px;
     padding-top: 30px;
     padding-bottom: 30px;
-    /* transform: scale(1.2); */
 }
 
 .input{
@@ -41,9 +39,9 @@
 }
 
 .loginButton{
-    width: 300px; /* 设置按钮宽度为200像素 */
-    height: 50px; /* 设置按钮高度为50像素 */
-    font-size: 20px; /* 设置按钮内字体大小为16像素 */
+    width: 300px;
+    height: 50px;
+    font-size: 20px;
     border-radius: 5px;
     border: 1px solid black;
     margin-top: 30px;
@@ -92,7 +90,6 @@
 .main {
     display: flex;
     flex-direction: column;
-    /* justify-content: space-between; */
     align-items: center;
     padding: 5rem;
     min-height: 100vh;

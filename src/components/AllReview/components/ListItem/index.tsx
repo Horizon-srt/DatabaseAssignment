@@ -9,8 +9,8 @@ const ListItem: React.FC<ListItemProps> = ({ reviewInfo }) => {
     return (
         <>
             <div className={styles.listbox}>
-                <div>{reviewInfo.name}</div>
-                <div>{reviewInfo.comment}</div>
+                <div style={{fontSize:'small',color:'grey'}}>{reviewInfo.name}</div>
+                <div style={{width:'100%'}}>{reviewInfo.comment}</div>
             </div>
             <div className={styles.divide} />
         </>

@@ -1,14 +1,10 @@
 .listbox {
     width: 100%;
-    height: 60px;
-    padding: 20px;
+    height: auto;
+    padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.info {
-    /* background-color: black; */
 }
 
 .useButton {

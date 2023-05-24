@@ -1,6 +1,9 @@
 .contain {
-    font-size: 20px;
+    /* font-size: 20px; */
     display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 5px;
 }
 
 .blackPart {
@@ -16,19 +19,24 @@
 }
 
 .building{
-    margin-left: 10px;
-    font-size:medium;
+    /* margin-left: 10px; */
+    font-size: small;
     color: gray;
 }
 
 .room{
-    font-size: 30px;
+    width: 1.5rem;
+    font-size: larger;
 }
 
 .firstLine{
-    place-items: center;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
 }
 
 .time{
+    font-size: small;
     color: gray;
+    padding-left: 1rem;
 }

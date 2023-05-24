@@ -20,6 +20,7 @@ const Learn: React.FC<LearnProps> = ({ records }) => {
             <div className={styles.divide} />
             <ul>
                 {records.map(e => {
+                    console.log(e);
                     return (
                         <li key={e.room + e.building}>
                             <ListItem recordInfo={e} />

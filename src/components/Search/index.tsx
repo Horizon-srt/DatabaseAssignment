@@ -1,6 +1,6 @@
 import main from '@/styles/main.module.css'
 import styles from './styles/style.module.css'
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { buildingMap, buildingType, buildings, timeMap, timeType, times, MenuType } from '@/utils/dataType';
 import { GetAllReviewProps, RoomProps, SearchRoomsProps } from '@/utils/appType';
 import { getRooms } from '@/api/api';
@@ -21,11 +21,10 @@ const Search: React.FC<SearchProps> = ({ reviews, setMenuState }) => {
             building: building,
             time: time.toString()
         };
-        await getRooms(temp).then(res => {
-            console.log(res);
-            setResult(res);
-            console.log(result);
-        });
+        const tempList = await getRooms(temp);
+        if (tempList) {
+            setResult(tempList);
+        }
     }
 
     return (
@@ -55,21 +54,6 @@ const Search: React.FC<SearchProps> = ({ reviews, setMenuState }) => {
             </div>
             <div className={styles.divide} />
             <List result={result} reviews={reviews} setMenuState={setMenuState} />
-            {/* <ul>
-                {result.map(e => {
-                    return (
-                        <li key={e.room + e.building}>
-                            <ListItem 
-                                roomInfo={e} 
-                                root={userInfo.root} 
-                                time={e.time as unknown as timeType} 
-                                reviews={reviews}
-                                setMenuState={setMenuState}
-                            />
-                        </li>
-                    );
-                })}
-            </ul> */}
         </div>
     );
 };
