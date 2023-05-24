@@ -29,7 +29,7 @@ const Home = () => {
             const getList = async () => {
                 const getRecord: GetRecordProps = {
                     userId: userInfo.userId,
-                    num: 100,
+                    num: 1,
                     size: 100
                 };
                 const temp = await getRecords(getRecord);

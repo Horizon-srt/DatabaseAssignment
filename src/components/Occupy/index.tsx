@@ -18,15 +18,15 @@ const Occupy: React.FC<OccupyProps> = ({ occupies }) => {
                 <div className={styles.title}>我的占用记录</div>
             </div>
             <div className={styles.divide} />
-            <table>
+            <ul>
                 {occupies.map(e => {
                     return (
-                        <tr key={e.room + e.building}>
+                        <li key={e.room + e.building}>
                             <ListItem occupyInfo={e} />
-                        </tr>
+                        </li>
                     );
                 })}
-            </table>
+            </ul>
         </div>
     );
 };

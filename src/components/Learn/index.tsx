@@ -18,15 +18,15 @@ const Learn: React.FC<LearnProps> = ({ records }) => {
                 <div className={styles.title}>我的自习记录</div>
             </div>
             <div className={styles.divide} />
-            <table>
+            <ul>
                 {records.map(e => {
                     return (
-                        <tr key={e.room + e.building}>
+                        <li key={e.room + e.building}>
                             <ListItem recordInfo={e} />
-                        </tr>
+                        </li>
                     );
                 })}
-            </table>
+            </ul>
         </div>
     );
 };

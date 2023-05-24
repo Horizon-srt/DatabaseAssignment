@@ -42,30 +42,30 @@ const Login = () => {
             root: root,
         };
         if (id != '' && password != '') {
-            // await postUserLogin(tempInfo).then(res => {
-            //     if (res.success) {
-            //         const userInfo: UserInfoProps = {
-            //             userId: res.user.userid,
-            //             password: res.user.password,
-            //             name: res.user.name,
-            //             root: res.user.root == 1
-            //         }
-            //         setUserInfo(userInfo);
-            //         setLoginState(true);
-            //     } else {
-            //         alert('No such user!');
-            //     }
-            // }).catch(err => {
-            //     console.log(err);
-            // });
-            /* mock */
-            setUserInfo({
-                userId: '1',
-                password: '1',
-                name: 'a',
-                root: false
+            await postUserLogin(tempInfo).then(res => {
+                if (res.success) {
+                    const userInfo: UserInfoProps = {
+                        userId: res.user.userid,
+                        password: res.user.password,
+                        name: res.user.name,
+                        root: res.user.root == 1
+                    }
+                    setUserInfo(userInfo);
+                    setLoginState(true);
+                } else {
+                    alert('No such user!');
+                }
+            }).catch(err => {
+                console.log(err);
             });
-            setLoginState(true)
+            /* mock */
+            // setUserInfo({
+            //     userId: '1',
+            //     password: '1',
+            //     name: 'a',
+            //     root: false
+            // });
+            // setLoginState(true)
         } else {
             setShowPopup(true);
         }

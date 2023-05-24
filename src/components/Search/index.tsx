@@ -7,6 +7,7 @@ import { getRooms } from '@/api/api';
 import ListItem from './components/ListItem';
 import { Store } from '@/store/store';
 import { useStore } from 'reto';
+import List from './components/List';
 
 interface SearchProps {
     reviews: (args: GetAllReviewProps) => void;
@@ -24,34 +25,15 @@ const Search: React.FC<SearchProps> = ({ reviews, setMenuState }) => {
             building: building,
             time: time.toString()
         };
-        // const result = await getRooms(temp);
-        // if (result) {
-        //     setResult(result);
-        // }
-        /* mock */
-        const room1 = {
-            room: '101',
-            building: '1',
-            time: '1',
-            name: 'a',
-            avaliable: true
+        const tempList = await getRooms(temp);
+        if (tempList) {
+            setResult(tempList);
         }
-        const room2 = {
-            room: '102',
-            building: '1',
-            time: '1',
-            name: 'a',
-            avaliable: true
-        }
-        const room3 = {
-            room: '103',
-            building: '1',
-            time: '1',
-            name: 'a',
-            avaliable: true
-        }
-        setResult([room1, room2, room3]);
     }
+
+    useEffect(() => {
+        // console.log(result);
+    }, [result]);
 
     return (
         <div className={main.contentCard}>
@@ -79,10 +61,11 @@ const Search: React.FC<SearchProps> = ({ reviews, setMenuState }) => {
                 <button type='submit' className={styles.searchButton} onClick={handleClick}>查询</button>
             </div>
             <div className={styles.divide} />
-            <table>
+            <List result={result} reviews={reviews} setMenuState={setMenuState} />
+            {/* <ul>
                 {result.map(e => {
                     return (
-                        <tr key={e.room + e.building}>
+                        <li key={e.room + e.building}>
                             <ListItem 
                                 roomInfo={e} 
                                 root={userInfo.root} 
@@ -90,10 +73,10 @@ const Search: React.FC<SearchProps> = ({ reviews, setMenuState }) => {
                                 reviews={reviews}
                                 setMenuState={setMenuState}
                             />
-                        </tr>
+                        </li>
                     );
                 })}
-            </table>
+            </ul> */}
         </div>
     );
 };
