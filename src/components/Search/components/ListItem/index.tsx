@@ -13,10 +13,11 @@ interface ListItemProps {
     time: timeType;
     reviews: (args: GetAllReviewProps) => void;
     setMenuState: (args: MenuType) => void;
+    shouldUpdate: boolean;
     setShouldUpdate: (args: boolean) => void;
 }
 
-const ListItem: React.FC<ListItemProps> = ({ roomInfo, root, time, reviews, setMenuState, setShouldUpdate }) => {
+const ListItem: React.FC<ListItemProps> = ({ roomInfo, root, time, reviews, setMenuState, shouldUpdate, setShouldUpdate }) => {
     const router = useRouter();
     const {userInfo} = useStore(Store);
 
@@ -31,14 +32,12 @@ const ListItem: React.FC<ListItemProps> = ({ roomInfo, root, time, reviews, setM
 
         const occupy = async () => {
             await postCreateUsage(temp).then(res => {
-                console.log(res);
             }).catch(err => {
                 console.log(err);
             })
         }
-
         occupy();
-        setShouldUpdate(true);
+        setShouldUpdate(!shouldUpdate);
     };
     
     return (

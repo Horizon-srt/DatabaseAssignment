@@ -18,4 +18,4 @@ pnpm install
 
 pnpm run dev
 
-6. open url: http://localhost:3006
+6. open url: http://localhost:3000

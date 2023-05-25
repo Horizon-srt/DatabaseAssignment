@@ -24,6 +24,7 @@ const ListItem: React.FC<ListItemProps> = ({ roomInfo, onChange, onDelete }) => 
                 building: roomInfo.building
             });
         }
+        setOnShow(false);
     };
 
     return (<>

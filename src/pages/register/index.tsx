@@ -24,7 +24,6 @@ const Register = () => {
         };
         if (id != '' && name != '' && password != '') {
             await postUserRegister(tempInfo).then(res => {
-                console.log(res);
                 alert('Register successfully');
             }).catch(err => {
                 console.log(err);
@@ -62,7 +61,7 @@ const Register = () => {
             <p className={styles.header}>{root ? 'Teacher' : 'Student'}Register</p>
             <div>
             <div className={styles.input}>
-                    <label htmlFor="name">Name: </label>
+                    <div className={styles.inputlable}>{'Name: '}</div>
                     <input
                         className={styles.inputBox}
                         id="name"
@@ -71,7 +70,7 @@ const Register = () => {
                     />
                 </div>
                 <div className={styles.input}>
-                    <label htmlFor="id">Account: </label>
+                    <div className={styles.inputlable}>{'Account: '}</div>
                     <input
                         className={styles.inputBox}
                         id="id"
@@ -80,7 +79,7 @@ const Register = () => {
                     />
                 </div>
                 <div className={styles.input}>
-                    <label htmlFor="password">Password: </label>
+                <div className={styles.inputlable}>{'Password: '}</div>
                     <input
                         className={styles.inputBox}
                         type="password"

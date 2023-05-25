@@ -24,12 +24,14 @@ const Learning: React.FC = () => {
 	if (startTime != null && now != null) {
 		sec = now - startTime;
         time = '';
-        let date = new Date(sec);
-        time = time + (date.getHours() < 10 ? '0' + date.getHours() : date.getHours());
+        const h = Math.floor(sec / 3600000);
+        const m = Math.floor((sec - h * 3600000) / 60000);
+        const s = Math.floor((sec - m * 60000) / 1000);
+        time = time + (h < 10 ? '0' + h : h);
         time = time + ':';
-        time = time + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes());
+        time = time + (m < 10 ? '0' + m : m);
         time = time + ':';
-        time = time + (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
+        time = time + (s < 10 ? '0' + s : s);
 	}
  
 	const start = () => {
@@ -76,21 +78,20 @@ const Learning: React.FC = () => {
                 <div className={styles.title}>
                     Start Learning!!!
                 </div>
-                <div className={styles.button} onClick={handleClick}>
+                <button className={styles.button} onClick={handleClick}>
                     Start/Stop
-                </div>
+                </button>
                 <div className={styles.timer}>
                     {time}
                 </div>
             </div>
-            {/* TODO: 对话框 */}
-            <div hidden={!showDialog}>
-                <dialog className={styles.dialog}>
-                    You have learned for: {time}
+            <dialog open={showDialog} style={{borderRadius:'5px'}}>
+                <div className={styles.dialog}>
+                    <div>You have learned for: </div>
+                    <div style={{fontSize:'blob'}}>{time}</div>
                     <button className={styles.confirm} onClick={handleConfirm}>Confirm</button>
-                </dialog>
-            </div>
-            
+                </div>
+            </dialog>
         </main>
         
     );

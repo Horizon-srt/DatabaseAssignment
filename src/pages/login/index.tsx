@@ -84,7 +84,7 @@ const Login = () => {
             <p className={styles.header}>{root ? 'Teacher' : 'Student'} Login</p>
             <div>
                 <div className={styles.input}>
-                    <label htmlFor="id" style={{width:'5rem'}}>{'Account:  '}</label>
+                    <div className={styles.inputlable}>{'Account: '}</div>
                     <input
                         className={styles.inputBox}
                         id="id"
@@ -93,7 +93,7 @@ const Login = () => {
                     />
                 </div>
                 <div className={styles.input}>
-                    <label htmlFor="password" style={{width:'5rem'}}>{'Password: '}</label>
+                    <div className={styles.inputlable}>{'Password: '}</div>
                     <input
                         className={styles.inputBox}
                         type="password"

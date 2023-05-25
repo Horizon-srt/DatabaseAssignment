@@ -19,6 +19,8 @@ const Root = () => {
     const [roomp, setRoomp] = useState('');
     const [buildingp, setBuildingp] = useState('');
 
+    const [shouldUpdate, setShouldUpdate] = useState(false);
+
     useEffect(() => {
         if (!rootLogin) {
             router.push('/login');
@@ -43,7 +45,19 @@ const Root = () => {
         await postCreateRoom(temp);
         setDialog(!dialog);
         alert('Add successfully!')
+        setShouldUpdate(!shouldUpdate);
     }
+
+    useEffect(() => {
+        const get = async () => {
+            const list = await getRoomInfo({building});
+            if (list) {
+                setRoomList(list);
+            }
+        }
+        get();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [shouldUpdate]);
 
     return (
         <main className={main.main}>
@@ -64,7 +78,7 @@ const Root = () => {
                 <button onClick={() => {logout()}} >{'Logout ->'}</button>
             </div>
             <div className={styles.divide} />
-            <List roomList={roomList} />
+            <List roomList={roomList} shouldUpdate={shouldUpdate} setShouldUpdate={setShouldUpdate} />
             </div>
             <dialog open={dialog} style={{borderRadius:'10px'}}>
                 <div className={styles.modal}>
@@ -74,7 +88,7 @@ const Root = () => {
                     </div>
                     <div className={styles.inputbox}>
                         <div className={styles.inputitem}>
-                            <div style={{width:'4rem'}}>Room number: </div>
+                            <div style={{width:'4rem'}}>Room: </div>
                             <input type='text' className={styles.inputt} onChange={e => setRoomp(e.target.value)} />
                         </div>
                         <div className={styles.inputitem}>

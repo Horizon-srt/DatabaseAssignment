@@ -21,6 +21,7 @@ export const postUserLogin = async (args: UserLoginProps) => {
 
 // 注册
 export const postUserRegister = async (args: UserRegisterProps) => {
+    console.log(args);
     const { data } = await axios.post('http://localhost:80/dba/user/register', {
         userid: args.userId,
         password: args.password,
@@ -51,11 +52,12 @@ export const getRooms =  async (args: SearchRoomsProps) => {
 
 // 创建一条自习记录
 export const postCreateRecord = async (args: RecordProps) => {
+    console.log(args);
     const { data } = await axios.post('http://localhost:80/dba/record', {
         room: args.room,
         building: args.building,
-        user: args.userId,
-        startAt: args.startAt,
+        userid: args.userId,
+        startat: args.startAt,
         period: args.period
     })
     return data;
@@ -69,8 +71,8 @@ export const getRecords = async (args: GetRecordProps) => {
             recordList.push({
                 room: item.room,
                 building: item.building,
-                userId: item.user,
-                startAt: '',
+                userId: item.userid,
+                startAt: item.startat,
                 period: item.period,
             } as RecordProps);
         })
@@ -85,7 +87,7 @@ export const postCreateUsage = async (args: UsageProps) => {
     const { data } = await axios.post('http://localhost:80/dba/usage', {
         room: args.room,
         building: args.building,
-        userid: args.userId, // user
+        userid: args.userId,
         time: Number(args.time)
     })
     return data;
@@ -99,8 +101,8 @@ export const getUsages = async (args: GetUsageProps) => {
         res.data.forEach((item: any) => {
             usage.push({
                 room: item.room,
-                building: item.Building,
-                userId: item.user,
+                building: item.building,
+                userId: item.userid,
                 startAt: '',
                 time: item.time
             });
@@ -129,7 +131,6 @@ export const postReview = async (args: PostReviewProps) => {
 export const getOwnReview = async (args: GetOwnReviewListProps) => {
     const reviewList = [] as ReviewProps[];
     await axios.get(`http://localhost/dba/review/own?userid=${args.userId}`).then(res => {
-        console.log(res)
         res.data.forEach((item: any) => {
             reviewList.push({
                 name: item.name,

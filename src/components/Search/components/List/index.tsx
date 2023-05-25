@@ -9,10 +9,11 @@ interface ListProps {
     result: RoomProps[];
     reviews: (args: GetAllReviewProps) => void;
     setMenuState: (args: MenuType) => void;
+    shouldUpdate: boolean;
     setShouldUpdate: (args: boolean) => void;
 }
 
-const List: React.FC<ListProps> = ({ result, reviews, setMenuState, setShouldUpdate }) => {
+const List: React.FC<ListProps> = ({ result, reviews, setMenuState, shouldUpdate, setShouldUpdate }) => {
     const {userInfo} = useStore(Store);
 
     return (
@@ -26,6 +27,7 @@ const List: React.FC<ListProps> = ({ result, reviews, setMenuState, setShouldUpd
                                 time={e.time as unknown as timeType} 
                                 reviews={reviews}
                                 setMenuState={setMenuState}
+                                shouldUpdate={shouldUpdate}
                                 setShouldUpdate={setShouldUpdate}
                             />
                         </li>

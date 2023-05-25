@@ -7,8 +7,8 @@ interface ListItemProps {
 
 const ListItem: React.FC<ListItemProps> = ({ recordInfo }) => {
     const h = Number(recordInfo.period) / 3600000;
-    const m = (Number(recordInfo.period) - h * 3600) / 60000;
-    const s = (Number(recordInfo.period) - m * 60) / 1000;
+    const m = (Number(recordInfo.period) - h * 3600000) / 60000;
+    const s = (Number(recordInfo.period) - m * 6000) / 1000;
     return (
         <>
             <div className={styles.listbox}>

@@ -69,7 +69,7 @@ const Search: React.FC<SearchProps> = ({ reviews, setMenuState }) => {
                 <button type='submit' className={styles.searchButton} onClick={handleClick}>Search</button>
             </div>
             <div className={styles.divide} />
-            <List result={result} reviews={reviews} setMenuState={setMenuState} setShouldUpdate={setShouldUpdate} />
+            <List result={result} reviews={reviews} setMenuState={setMenuState} shouldUpdate={shouldUpdate} setShouldUpdate={setShouldUpdate} />
         </div>
     );
 };
