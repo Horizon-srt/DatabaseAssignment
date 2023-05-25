@@ -37,7 +37,7 @@ const Home = () => {
                 const getRecord: GetRecordProps = {
                     userId: userInfo.userId,
                     num: 1,
-                    size: 100
+                    size: 1000
                 };
                 const temp = await getRecords(getRecord);
                 setRecords(temp);

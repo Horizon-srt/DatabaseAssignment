@@ -42,6 +42,7 @@ const Root = () => {
         }
         await postCreateRoom(temp);
         setDialog(!dialog);
+        alert('添加成功！')
     }
 
     return (

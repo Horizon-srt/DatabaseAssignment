@@ -13,9 +13,10 @@ interface ListItemProps {
     time: timeType;
     reviews: (args: GetAllReviewProps) => void;
     setMenuState: (args: MenuType) => void;
+    setShouldUpdate: (args: boolean) => void;
 }
 
-const ListItem: React.FC<ListItemProps> = ({ roomInfo, root, time, reviews, setMenuState }) => {
+const ListItem: React.FC<ListItemProps> = ({ roomInfo, root, time, reviews, setMenuState, setShouldUpdate }) => {
     const router = useRouter();
     const {userInfo} = useStore(Store);
 
@@ -37,6 +38,7 @@ const ListItem: React.FC<ListItemProps> = ({ roomInfo, root, time, reviews, setM
         }
 
         occupy();
+        setShouldUpdate(true);
     };
     
     return (
@@ -57,9 +59,9 @@ const ListItem: React.FC<ListItemProps> = ({ roomInfo, root, time, reviews, setM
             {roomInfo.avaliable ? (
                 <>{
                     root ? (
-                        <button onClick={handleOccupy}>占用</button>
+                        <button className = {styles.studyButton} onClick={handleOccupy}>占用</button>
                     ) : (
-                        <button  className = {styles.studyButton} onClick={() => {
+                        <button className = {styles.studyButton} onClick={() => {
                             router.push({
                                 pathname: 'learning',
                                 query: {

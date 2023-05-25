@@ -12,9 +12,10 @@ const MenuButton: React.FC<MenuButtonProps> = ({ label, onClick }) => {
     }
 
     return (
-        <div className={styles.menuButton} onClick={handleClick}>
+        <button className={styles.menuButton} onClick={handleClick}>
             <div className={styles.label}>{ MenuMap[label] }</div>
-        </div>
+            <div>{'-->'}</div>
+        </button>
     );
 };
 

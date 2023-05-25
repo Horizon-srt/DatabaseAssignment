@@ -15,6 +15,7 @@ const Search: React.FC<SearchProps> = ({ reviews, setMenuState }) => {
     const [building, setBuilding] = useState('1');
     const [time, setTime] = useState(1 as timeType);
     const [result, setResult] = useState([] as RoomProps[]);
+    const [shouldUpdate, setShouldUpdate] = useState(false);
 
     const handleClick = async () => {
         const temp: SearchRoomsProps = {
@@ -26,6 +27,21 @@ const Search: React.FC<SearchProps> = ({ reviews, setMenuState }) => {
             setResult(tempList);
         }
     }
+
+    useEffect(() => {
+        const temp: SearchRoomsProps = {
+            building: building,
+            time: time.toString()
+        };
+        const get = async () => {
+            const tempList = await getRooms(temp);
+            if (tempList) {
+                setResult(tempList);
+            }
+        }
+        get();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [shouldUpdate])
 
     return (
         <div className={main.contentCard}>
@@ -53,7 +69,7 @@ const Search: React.FC<SearchProps> = ({ reviews, setMenuState }) => {
                 <button type='submit' className={styles.searchButton} onClick={handleClick}>查询</button>
             </div>
             <div className={styles.divide} />
-            <List result={result} reviews={reviews} setMenuState={setMenuState} />
+            <List result={result} reviews={reviews} setMenuState={setMenuState} setShouldUpdate={setShouldUpdate} />
         </div>
     );
 };

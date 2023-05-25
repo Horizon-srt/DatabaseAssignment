@@ -65,7 +65,6 @@ export const postCreateRecord = async (args: RecordProps) => {
 export const getRecords = async (args: GetRecordProps) => {
     const recordList = [] as RecordProps[];
     await axios.get(`http://localhost:80/dba/record?num=${args.num}&size=${args.size}&user=${args.userId}`).then(res => {
-        console.log(res);
         res.data.forEach((item: any) => {
             recordList.push({
                 room: item.room,
@@ -86,9 +85,8 @@ export const postCreateUsage = async (args: UsageProps) => {
     const { data } = await axios.post('http://localhost:80/dba/usage', {
         room: args.room,
         building: args.building,
-        user: args.userId, // user
-        startAt: args.startAt,
-        time: args.time
+        userid: args.userId, // user
+        time: Number(args.time)
     })
     return data;
 };
@@ -101,8 +99,8 @@ export const getUsages = async (args: GetUsageProps) => {
         res.data.forEach((item: any) => {
             usage.push({
                 room: item.room,
-                building: item.building,
-                userId: item.userid,
+                building: item.Building,
+                userId: item.user,
                 startAt: '',
                 time: item.time
             });
