@@ -47,7 +47,7 @@ const Search: React.FC<SearchProps> = ({ reviews, setMenuState }) => {
         <div className={main.contentCard}>
             <div className={main.contentCardTitle}>
                 <div>
-                    楼号：
+                    Building: 
                     <select onChange={e => setBuilding(e.target.value)}>
                         {buildings.map(e => {
                             return (
@@ -57,7 +57,7 @@ const Search: React.FC<SearchProps> = ({ reviews, setMenuState }) => {
                     </select>
                 </div>
                 <div>
-                    时段：
+                    Time: 
                     <select onChange={e => setTime(e.target.value as unknown as timeType)}>
                         {times.map(e => {
                             return (
@@ -66,7 +66,7 @@ const Search: React.FC<SearchProps> = ({ reviews, setMenuState }) => {
                         })}
                     </select>
                 </div>
-                <button type='submit' className={styles.searchButton} onClick={handleClick}>查询</button>
+                <button type='submit' className={styles.searchButton} onClick={handleClick}>Search</button>
             </div>
             <div className={styles.divide} />
             <List result={result} reviews={reviews} setMenuState={setMenuState} setShouldUpdate={setShouldUpdate} />

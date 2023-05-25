@@ -15,7 +15,7 @@ const Learn: React.FC<LearnProps> = ({ records }) => {
     return (
         <div className={main.contentCard}>
             <div className={main.contentCardTitle}>
-                <div className={styles.title}>我的自习记录</div>
+                <div className={styles.title}>My learning Record</div>
             </div>
             <div className={styles.divide} />
             <ul>

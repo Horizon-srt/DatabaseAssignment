@@ -11,7 +11,7 @@ const OwnReview: React.FC<OwnReviewProps> = ({ ownReview }) => {
     return (
         <div className={main.contentCard}>
             <div className={main.contentCardTitle}>
-                <div className={styles.title}>我的评论记录</div>
+                <div className={styles.title}>My comment record</div>
             </div>
             <div className={styles.divide} />
             <ul>

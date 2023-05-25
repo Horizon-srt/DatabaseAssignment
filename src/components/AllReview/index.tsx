@@ -28,21 +28,21 @@ const AllReview: React.FC<AllReviewProps> = ({ allReview, reviews, setShouldUpda
         }
         await postReview(temp);
         setMessage('');
-        alert('发送成功')
+        alert('Sent Successfully!')
         setShouldUpdate(true);
     }
 
     return (
         <div className={main.contentCard}>
             <div className={main.contentCardTitle}>
-                <div className={styles.title}>{`关于 ${reviews.room}·${buildingMap[reviews.building as unknown as buildingType]} 的评论`}</div>
+                <div className={styles.title}>{`Comment about ${reviews.room} in ${buildingMap[reviews.building as unknown as buildingType]}`}</div>
             </div>
             <div className={styles.divide} />
             <div className={styles.commentbox} >
-                <input className={styles.input} value={message} onChange={e => {
+                <textarea className={styles.input} value={message} onChange={e => {
                     setMessage(e.target.value)
                 }} />
-                <button className={styles.button} onClick={handleSubmit}>提交</button>
+                <button className={styles.button} onClick={handleSubmit}>Submit</button>
             </div>
             <div className={styles.divide} />
             <ul>

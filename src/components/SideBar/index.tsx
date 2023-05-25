@@ -12,7 +12,7 @@ const SideBar: React.FC<SideBarProps> = ({ root, onSelect }) => {
     return (
         <div className={styles.barCard}>
             <div className={main.contentCardTitle}>
-                <div className={styles.title}>目录</div>
+                <div className={styles.title}>Menu</div>
             </div>
             <div className={styles.divide} />
             <MenuButton label={'search'} onClick={onSelect} />

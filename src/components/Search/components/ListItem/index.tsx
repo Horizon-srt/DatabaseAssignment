@@ -54,12 +54,12 @@ const ListItem: React.FC<ListItemProps> = ({ roomInfo, root, time, reviews, setM
                 });
                 setMenuState('allReview');
             }}>
-                评论
+                Comment
             </button>
             {roomInfo.avaliable ? (
                 <>{
                     root ? (
-                        <button className = {styles.studyButton} onClick={handleOccupy}>占用</button>
+                        <button className = {styles.studyButton} onClick={handleOccupy}>Occupy</button>
                     ) : (
                         <button className = {styles.studyButton} onClick={() => {
                             router.push({
@@ -70,12 +70,12 @@ const ListItem: React.FC<ListItemProps> = ({ roomInfo, root, time, reviews, setM
                                 }
                             })
                         }}>
-                            去学习
+                            Learn
                         </button>
                     )
                 }</>
             ) : (
-                <button className = {styles.useButton}>不可用</button>
+                <button className = {styles.useButton}>Unavailable</button>
             )}
         </div>
         <div className={styles.divide} />

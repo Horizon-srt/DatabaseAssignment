@@ -79,12 +79,12 @@ const Login = () => {
 
     return (
         <main className={styles.main}>
-        <button className={styles.button} onClick={switchRoles}>切换身份</button>
+        <button className={styles.button} onClick={switchRoles}>Switch role</button>
         <div className={styles.contain}>
-            <p className={styles.header}>{root ? '教师' : '学生'}登陆</p>
+            <p className={styles.header}>{root ? 'Teacher' : 'Student'} Login</p>
             <div>
                 <div className={styles.input}>
-                    <label htmlFor="id">账号：</label>
+                    <label htmlFor="id" style={{width:'5rem'}}>{'Account:  '}</label>
                     <input
                         className={styles.inputBox}
                         id="id"
@@ -93,7 +93,7 @@ const Login = () => {
                     />
                 </div>
                 <div className={styles.input}>
-                    <label htmlFor="password">密码：</label>
+                    <label htmlFor="password" style={{width:'5rem'}}>{'Password: '}</label>
                     <input
                         className={styles.inputBox}
                         type="password"
@@ -103,9 +103,9 @@ const Login = () => {
                     />
                 </div>
             </div>
-            <button className={styles.loginButton} onClick={handleLogin}>登陆</button>
-            <button hidden={!root} className={styles.loginButton} onClick={handleRootLogin}>root登录</button>
-            <button className={styles.registerButton} onClick={() => {router.push('/register');}}>注册账号</button>
+            <button className={styles.loginButton} onClick={handleLogin}>Login</button>
+            <button hidden={!root} className={styles.loginButton} onClick={handleRootLogin}>Root Login</button>
+            <button className={styles.registerButton} onClick={() => {router.push('/register');}}>Register</button>
         </div>
 
         {showPopup && (
@@ -114,8 +114,8 @@ const Login = () => {
                         <span onClick={closePopup}>
                         &times;
                         </span>
-                        <h2>登陆失败</h2>
-                        <p>请填写正确的登陆信息</p>
+                        <h2>Login failed</h2>
+                        <p>Please check account and password</p>
                     </div>
                 </div>
             )}

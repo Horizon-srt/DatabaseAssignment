@@ -15,7 +15,7 @@ const Occupy: React.FC<OccupyProps> = ({ occupies }) => {
     return (
         <div className={main.contentCard}>
             <div className={main.contentCardTitle}>
-                <div className={styles.title}>我的占用记录</div>
+                <div className={styles.title}>My occupy record</div>
             </div>
             <div className={styles.divide} />
             <ul>

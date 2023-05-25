@@ -16,8 +16,8 @@ const UserCard: React.FC<UserCardProps> = ({ userInfo }) => {
         <div className={styles.card}>
             <Image src={Avator} alt={"Avator of the auther"} className={styles.avator} />
             <div className={styles.informationCard}>
-                <div>姓名：{userInfo.name}</div>
-                <div>学号/工号：{userInfo.userId}</div>
+                <div>Name: {userInfo.name}</div>
+                <div>Number: {userInfo.userId}</div>
                 <button onClick={() => {logout()}} >{'Logout ->'}</button>
             </div>
         </div>

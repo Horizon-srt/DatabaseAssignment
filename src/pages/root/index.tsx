@@ -42,7 +42,7 @@ const Root = () => {
         }
         await postCreateRoom(temp);
         setDialog(!dialog);
-        alert('添加成功！')
+        alert('Add successfully!')
     }
 
     return (
@@ -50,7 +50,7 @@ const Root = () => {
             <div className={main.contentCard}>
             <div className={main.contentCardTitle}>
                 <div>
-                    楼号：
+                    Building: 
                     <select onChange={e => setBuilding(e.target.value)}>
                         {buildings.map(e => {
                             return (
@@ -59,8 +59,8 @@ const Root = () => {
                         })}
                     </select>
                 </div>
-                <button type='submit' className={styles.addButton} onClick={() => setDialog(!dialog)}>添加</button>
-                <button type='submit' className={styles.searchButton} onClick={handleClick}>查询</button>
+                <button type='submit' className={styles.addButton} onClick={() => setDialog(!dialog)}>Add</button>
+                <button type='submit' className={styles.searchButton} onClick={handleClick}>Search</button>
                 <button onClick={() => {logout()}} >{'Logout ->'}</button>
             </div>
             <div className={styles.divide} />
@@ -69,22 +69,22 @@ const Root = () => {
             <dialog open={dialog} style={{borderRadius:'10px'}}>
                 <div className={styles.modal}>
                     <div style={{padding:'10px'}}>
-                        <div style={{fontWeight:'bold'}}>添加房间</div>
+                        <div style={{fontWeight:'bold'}}>Add room</div>
                         <div className={styles.divide} />
                     </div>
                     <div className={styles.inputbox}>
                         <div className={styles.inputitem}>
-                            <div style={{width:'4rem'}}>房间号：</div>
+                            <div style={{width:'4rem'}}>Room number: </div>
                             <input type='text' className={styles.inputt} onChange={e => setRoomp(e.target.value)} />
                         </div>
                         <div className={styles.inputitem}>
-                            <div style={{width:'4rem'}}>楼号：</div>
+                            <div style={{width:'4rem'}}>Building: </div>
                             <input type='text' className={styles.inputt} onChange={e => setBuildingp(e.target.value)} />
                         </div>
                     </div>
                     <div className={styles.buttonbox}>
-                        <button className={styles.submitadd} onClick={handleAdd}>提交</button>
-                        <button className={styles.closeadd} onClick={() => setDialog(!dialog)}>关闭</button>
+                        <button className={styles.submitadd} onClick={handleAdd}>Submit</button>
+                        <button className={styles.closeadd} onClick={() => setDialog(!dialog)}>Close</button>
                     </div>
                 </div>
             </dialog>

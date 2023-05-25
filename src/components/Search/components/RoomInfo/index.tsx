@@ -1,20 +1,19 @@
 import { RoomProps } from '@/utils/appType';
 import styles from './styles/styles.module.css';
+import { buildingMap, buildingType, timeMap, timeType } from '@/utils/dataType';
 
 interface InfoProps {
     roomInfo: RoomProps;
 }
 
 const RoomInfo: React.FC<InfoProps> = ({ roomInfo }) => {
-    const building: string = ("第 "+roomInfo.building+" 教学楼");
-    const time: string = ("第 "+roomInfo.time+" 节课")
     return (
         <div className={styles.contain}>  
             <div className={styles.firstLine}>
                 <div className={styles.room}>{roomInfo.room}</div>
-                <div className={styles.time}>{time}</div>
+                <div className={styles.time}>{timeMap[roomInfo.time as unknown as timeType]}</div>
             </div>
-            <div className={styles.building}>{building}</div>
+            <div className={styles.building}>{buildingMap[roomInfo.building as unknown as buildingType]}</div>
         </div>
     )
 }

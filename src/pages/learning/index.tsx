@@ -74,10 +74,10 @@ const Learning: React.FC = () => {
         <main className={main.main}>
             <div className={styles.contentCard}>
                 <div className={styles.title}>
-                    开始学习！
+                    Start Learning!!!
                 </div>
                 <div className={styles.button} onClick={handleClick}>
-                    开始/结束
+                    Start/Stop
                 </div>
                 <div className={styles.timer}>
                     {time}
@@ -86,8 +86,8 @@ const Learning: React.FC = () => {
             {/* TODO: 对话框 */}
             <div hidden={!showDialog}>
                 <dialog className={styles.dialog}>
-                    已学习时长：{time}
-                    <button className={styles.confirm} onClick={handleConfirm}>确认</button>
+                    You have learned for: {time}
+                    <button className={styles.confirm} onClick={handleConfirm}>Confirm</button>
                 </dialog>
             </div>
             

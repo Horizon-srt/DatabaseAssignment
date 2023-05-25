@@ -29,14 +29,14 @@ const ListItem: React.FC<ListItemProps> = ({ roomInfo, onChange, onDelete }) => 
     return (<>
         <div className={styles.listbox}>
             <div style={{width:'70px'}}>{roomInfo.room}</div>
-            <button className={styles.change} onClick={handleChange}>修改</button>
-            <button className={styles.delete} onClick={() => onDelete(roomInfo.roomId)}>删除</button>
+            <button className={styles.change} onClick={handleChange}>Change</button>
+            <button className={styles.delete} onClick={() => onDelete(roomInfo.roomId)}>Delete</button>
         </div>
         <div className={styles.changebox} hidden={!onShow}>
             <input className={styles.changeinput} onChange={e => {
                 setRoom(e.target.value);
             }} />
-            <button className={styles.changebutton} onClick={onConfirm}>确认</button>
+            <button className={styles.changebutton} onClick={onConfirm}>Confirm</button>
         </div>
         <div className={styles.divide} />
     </>);

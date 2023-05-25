@@ -5,6 +5,7 @@
 }
 
 .button {
+    width: auto;
     border-radius: 5px;
     background-color: #b3e0ed;
     border: 1px solid black;

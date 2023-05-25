@@ -25,7 +25,7 @@ const Register = () => {
         if (id != '' && name != '' && password != '') {
             await postUserRegister(tempInfo).then(res => {
                 console.log(res);
-                alert('注册成功');
+                alert('Register successfully');
             }).catch(err => {
                 console.log(err);
             })
@@ -57,12 +57,12 @@ const Register = () => {
   
     return (
         <main className={styles.main}>
-            <button className={styles.button} onClick={SwitchRoles}>切换身份</button>
+            <button className={styles.button} onClick={SwitchRoles}>Switch role</button>
             <div className={styles.contain}>
-            <p className={styles.header}>{root ? '教师' : '学生'}注册</p>
+            <p className={styles.header}>{root ? 'Teacher' : 'Student'}Register</p>
             <div>
             <div className={styles.input}>
-                    <label htmlFor="name">昵称：</label>
+                    <label htmlFor="name">Name: </label>
                     <input
                         className={styles.inputBox}
                         id="name"
@@ -71,7 +71,7 @@ const Register = () => {
                     />
                 </div>
                 <div className={styles.input}>
-                    <label htmlFor="id">账号：</label>
+                    <label htmlFor="id">Account: </label>
                     <input
                         className={styles.inputBox}
                         id="id"
@@ -80,7 +80,7 @@ const Register = () => {
                     />
                 </div>
                 <div className={styles.input}>
-                    <label htmlFor="password">密码：</label>
+                    <label htmlFor="password">Password: </label>
                     <input
                         className={styles.inputBox}
                         type="password"
@@ -90,8 +90,8 @@ const Register = () => {
                     />
                 </div>
             </div>
-            <button className={styles.registerButton} onClick={handleRegister}>注册</button>
-            <button className={styles.goBack} onClick={goBack}>返回登陆</button>
+            <button className={styles.registerButton} onClick={handleRegister}>Register</button>
+            <button className={styles.goBack} onClick={goBack}>Return to login</button>
 
             {showPopup && (
                 <div className={styles.popup}>
@@ -101,8 +101,8 @@ const Register = () => {
                         onClick={closePopup}>
                         &times;
                         </button>
-                        <h2>注册错误</h2>
-                        <p>请完整填写信息</p>
+                        <h2>Register failed</h2>
+                        <p>Please try again</p>
                     </div>
                 </div>
             )}

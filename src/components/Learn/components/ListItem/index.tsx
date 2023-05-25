@@ -16,7 +16,7 @@ const ListItem: React.FC<ListItemProps> = ({ recordInfo }) => {
                     <div style={{fontSize:'large'}}>{recordInfo.room}</div>
                     <div style={{fontSize:'small',color:'grey'}}>{recordInfo.building}</div>
                 </div>
-                <div>{`${Math.floor(h)}小时${Math.floor(m)}分钟${Math.floor(s)}秒`}</div>
+                <div>{`${Math.floor(h)} hour ${Math.floor(m)} minute ${Math.floor(s)} second`}</div>
             </div>
             <div className={styles.divide} />
         </>
